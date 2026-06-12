@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muir Web Co. — Websites for the Trades</title>
+<meta name="description" content="Websites and AI lead tools for roofers, excavators, and HVAC companies. $1,500 flat, live in a week. Built in Utah by Cash Muir.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   REPLACE BEFORE LAUNCH:
+   1. Phone number — search for 555-0100 and replace everywhere
+   2. Email — search for hello@muirwebco.com if you use a different one
+   ============================================================ */
+:root{
+  --granite:#23282B;
+  --pine:#2F4A3C;
+  --pine-deep:#243B30;
+  --moss:#5F8A6E;
+  --paper:#F4F4EF;
+  --line:#DBDBD2;
+  --ink:#23282B;
+  --muted:#5F6A66;
+  --signal:#E8632C;
+  --signal-dark:#D1521E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{font-family:'Barlow',sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;font-size:16.5px}
+h1,h2,h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.btn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:1.05rem;padding:14px 28px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:transform .12s ease,background .12s ease}
+.btn:active{transform:scale(.97)}
+.btn-signal{background:var(--signal);color:#fff}
+.btn-signal:hover{background:var(--signal-dark)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{border-color:#fff}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:var(--granite);color:#fff;border-bottom:3px solid var(--signal)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.45rem;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:10px}
+.topnav{display:flex;gap:26px;align-items:center}
+.topnav a{text-decoration:none;font-weight:600;font-size:.95rem;opacity:.9}
+.topnav a:hover{opacity:1;color:var(--signal)}
+.call-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:var(--signal)!important;opacity:1!important;text-decoration:none}
+@media(max-width:760px){.topnav a:not(.call-link){display:none}}
+
+/* hero with topo contour signature */
+.hero{background:linear-gradient(165deg,var(--pine-deep),var(--pine) 70%);color:#fff;position:relative;padding:90px 0 110px;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.topo{position:absolute;inset:0;z-index:1;opacity:.13}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#A8C7B2;font-size:1rem;margin-bottom:14px}
+.hero h1{font-size:clamp(2.7rem,7vw,4.8rem);font-weight:800;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--signal)}
+.hero p{margin:22px 0 32px;font-size:1.18rem;max-width:52ch;color:#D9E2DB}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-sub{margin-top:26px;font-size:.95rem;color:#A8C7B2}
+@media(max-width:760px){.hero{padding:60px 0 80px}}
+
+section{padding:76px 0}
+.sec-head{margin-bottom:42px;max-width:62ch}
+.sec-head h2{font-size:clamp(2rem,4.5vw,2.9rem);font-weight:800}
+.sec-head p{color:var(--muted);margin-top:10px;font-size:1.07rem}
+
+/* pain section */
+.pain{background:#fff}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.pain-card{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--signal);border-radius:8px;padding:24px}
+.pain-card h3{font-size:1.3rem;margin-bottom:8px}
+.pain-card p{color:var(--muted);font-size:.98rem}
+
+/* demos */
+.demos{background:var(--granite);color:#fff}
+.demos .sec-head p{color:#B8BEB9}
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.demo{border-radius:10px;overflow:hidden;text-decoration:none;display:block;background:#2C3236;border:1px solid #3A4145;transition:transform .15s ease}
+.demo:hover{transform:translateY(-4px)}
+.demo .swatch{height:150px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1.5rem;text-align:center;padding:0 16px}
+.demo.roof .swatch{background:linear-gradient(160deg,#22262A,#39414A);color:#FF6B1A}
+.demo.dirt .swatch{background:linear-gradient(160deg,#241F1A,#3A332B);color:#FFC400}
+.demo.hvac .swatch{background:linear-gradient(160deg,#1C2530,#2B3A4A);color:#35B6E8}
+.demo .meta{padding:18px}
+.demo .meta h3{font-size:1.2rem;margin-bottom:6px}
+.demo .meta p{font-size:.93rem;color:#B8BEB9}
+.demo .meta .go{margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--signal);font-size:.98rem}
+.demo-note{margin-top:20px;font-size:.95rem;color:#B8BEB9}
+
+/* included */
+.included{background:#fff}
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.inc{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:18px}
+.inc .check{flex:none;width:24px;height:24px;border-radius:50%;background:var(--pine);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;margin-top:2px}
+.inc p{font-size:.97rem}
+.inc strong{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:1.1rem;letter-spacing:.03em}
+
+/* pricing */
+.pricing{background:var(--paper)}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;align-items:stretch}
+.tier{background:#fff;border:1px solid var(--line);border-radius:10px;padding:30px 26px;display:flex;flex-direction:column}
+.tier.featured{border:2px solid var(--signal);position:relative}
+.tier.featured .flag{position:absolute;top:-13px;left:24px;background:var(--signal);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.85rem;padding:3px 12px;border-radius:4px}
+.tier h3{font-size:1.5rem}
+.tier .price{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.7rem;margin:10px 0 2px}
+.tier .per{font-size:.9rem;color:var(--muted);margin-bottom:16px}
+.tier ul{list-style:none;display:grid;gap:9px;margin-bottom:22px;font-size:.96rem}
+.tier ul li::before{content:"— ";color:var(--signal);font-weight:700}
+.tier .btn{margin-top:auto;text-align:center}
+.price-note{margin-top:20px;font-size:.92rem;color:var(--muted)}
+
+/* process */
+.process{background:#fff}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;counter-reset:step}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px;counter-increment:step;position:relative}
+.step::before{content:counter(step,decimal-leading-zero);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--moss);display:block;margin-bottom:8px}
+.step h3{font-size:1.25rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.95rem}
+
+/* about */
+.about{background:var(--pine);color:#fff}
+.about .wrap{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:start;max-width:880px}
+@media(max-width:700px){.about .wrap{grid-template-columns:1fr}}
+.about .mark{width:84px;height:84px;border-radius:50%;background:var(--granite);border:3px solid var(--signal);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:#fff}
+.about h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:14px}
+.about p{color:#D9E2DB;font-size:1.05rem;margin-bottom:12px}
+.about .sig{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--signal);font-size:1.15rem;margin-top:6px}
+
+/* contact / final cta */
+.contact{background:var(--granite);color:#fff;text-align:center}
+.contact h2{font-size:clamp(2rem,5vw,3rem)}
+.contact p{color:#B8BEB9;margin:14px auto 30px;max-width:52ch}
+.contact .big-phone{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,5vw,2.6rem);color:var(--signal);text-decoration:none;display:inline-block;margin-bottom:18px}
+.contact .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.contact .small{margin-top:24px;font-size:.92rem;color:#8A938E}
+
+footer{background:var(--granite);color:#8A938E;border-top:1px solid #3A4145;padding:26px 0 100px;font-size:.88rem;text-align:center}
+
+/* sticky mobile call bar */
+.callbar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--signal);color:#fff;text-align:center;padding:15px;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.2rem;letter-spacing:.05em;text-decoration:none;box-shadow:0 -4px 16px rgba(0,0,0,.25)}
+@media(max-width:760px){.callbar{display:block}}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Muir Web Co. home">
+      <svg width="30" height="24" viewBox="0 0 30 24" fill="none" aria-hidden="true"><path d="M2 20 L9 8 L13 14 L19 4 L28 20" stroke="#E8632C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 20 H28" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".6"/></svg>
+      Muir Web Co.
+    </a>
+    <div class="topnav">
+      <a href="#demos">Demos</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#process">How It Works</a>
+      <a href="#about">About</a>
+      <a class="call-link" href="tel:8015550100">(801) 555-0100</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="topo" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1.5">
+    <path d="M-50,520 C150,460 250,500 420,440 C590,380 700,430 870,360 C960,325 1010,340 1060,320"/>
+    <path d="M-50,460 C160,400 270,440 430,380 C600,320 710,370 880,300 C965,266 1015,280 1060,260"/>
+    <path d="M-50,400 C170,345 280,380 440,325 C610,265 720,310 890,245 C970,212 1020,225 1060,205"/>
+    <path d="M-50,340 C180,290 295,320 455,270 C620,215 735,255 900,195 C975,165 1025,175 1060,155"/>
+    <path d="M-50,280 C190,235 305,260 465,215 C630,165 745,200 910,145 C980,120 1030,128 1060,110"/>
+    <path d="M-50,220 C200,180 315,200 475,160 C640,115 755,145 920,95 C985,75 1035,80 1060,65"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Websites &amp; AI Lead Tools · Built in Utah</div>
+    <h1>Websites for the trades. <em>Built to ring your phone.</em></h1>
+    <p>I build sites for roofers, excavators, and HVAC companies. No agency retainers, no marketing jargon, no six-week timelines. $1,500 flat, live in a week — with a smart quote form that pre-qualifies your leads before they ever call.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-signal" href="tel:8015550100">Call or text (801) 555-0100</a>
+      <a class="btn btn-ghost" href="#demos">See the work</a>
+    </div>
+    <p class="hero-sub">Ask for Cash. Yes, that's my real name.</p>
+  </div>
+</header>
+
+<section class="pain">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Sound familiar?</h2>
+      <p>If any of these hit home, your website is costing you jobs every week — to whoever shows up first on a homeowner's phone.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <h3>You're invisible on Google</h3>
+        <p>Someone in your own town searches "roofer near me" and finds your competitors. Your name shows up on page three — or not at all.</p>
+      </div>
+      <div class="pain-card">
+        <h3>Your site breaks on phones</h3>
+        <p>Most of your customers find you on a phone. If they have to pinch and zoom to find your number, they're already calling the next guy.</p>
+      </div>
+      <div class="pain-card">
+        <h3>Your leads are garbage</h3>
+        <p>"Hey do you do roofs" texts at 10pm with no address, no details, no budget. You play phone tag for two days and the job goes elsewhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demos" id="demos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>See it before you buy it</h2>
+      <p>Three live demo sites — open them on your phone, that's where your customers are. Try the quote assistant at the bottom of each one. That's the feature no other web guy in Utah is offering you.</p>
+    </div>
+    <div class="demo-grid">
+      <a class="demo roof" href="https://roofing-demo-gamma.vercel.app/" target="_blank" rel="noopener">
+        <div class="swatch">Wasatch Ridge Roofing</div>
+        <div class="meta">
+          <h3>Roofing</h3>
+          <p>Storm &amp; insurance work front and center, click-to-call everywhere, AI quote intake that asks what your estimator would.</p>
+          <div class="go">Open the demo →</div>
+        </div>
+      </a>
+      <a class="demo dirt" href="https://excavation-demo.vercel.app/" target="_blank" rel="noopener">
+        <div class="swatch">Davis Dirtworks</div>
+        <div class="meta">
+          <h3>Excavation</h3>
+          <p>Built for dirt work — basement digs, grading, trenching. Quote assistant asks about site access and timeline so bids start smart.</p>
+          <div class="go">Open the demo →</div>
+        </div>
+      </a>
+      <a class="demo hvac" href="https://hvac-demo-beige.vercel.app/" target="_blank" rel="noopener">
+        <div class="swatch">Summit Heating &amp; Air</div>
+        <div class="meta">
+          <h3>HVAC</h3>
+          <p>Hot/cold branding, 24/7 emergency lane built in — if a customer's system is down, the site routes them straight to your phone.</p>
+          <div class="go">Open the demo →</div>
+        </div>
+      </a>
+    </div>
+    <p class="demo-note">These are demo companies, not real clients — your site gets your name, your photos, your reviews, your service area. Want to see your business in one of these before you pay a dime? Text me your company name and I'll send you a free mockup of your homepage.</p>
+  </div>
+</section>
+
+<section class="included">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Every site includes</h2>
+    </div>
+    <div class="inc-grid">
+      <div class="inc"><span class="check">✓</span><p><strong>Built for phones first</strong>Sticky tap-to-call button, fast loading, looks right on every screen.</p></div>
+      <div class="inc"><span class="check">✓</span><p><strong>Google-ready</strong>Set up to show up for "your trade + your city" searches, wired to your Google Business profile.</p></div>
+      <div class="inc"><span class="check">✓</span><p><strong>Your real work</strong>Your photos, your reviews, your license number, your service area. No stock-photo nonsense.</p></div>
+      <div class="inc"><span class="check">✓</span><p><strong>Live in a week</strong>You send photos and answer ten questions. I handle everything else, including your domain.</p></div>
+      <div class="inc"><span class="check">✓</span><p><strong>You own it</strong>Your domain, your site. No hostage situations if we ever part ways.</p></div>
+      <div class="inc"><span class="check">✓</span><p><strong>Straight answers</strong>One guy, my cell number, plain English. No account managers, no tickets.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pricing. Right here, like it should be.</h2>
+      <p>Flat rates, half up front, half when you're happy. No surprise invoices — same way you'd want to be treated on a bid.</p>
+    </div>
+    <div class="price-grid">
+      <div class="tier">
+        <h3>The Site</h3>
+        <div class="price">$1,500</div>
+        <div class="per">one-time, flat</div>
+        <ul>
+          <li>Full custom site, built for your trade</li>
+          <li>Mobile-first with tap-to-call</li>
+          <li>Photo gallery, reviews, service area</li>
+          <li>Google Business profile wiring</li>
+          <li>Two revision rounds included</li>
+        </ul>
+        <a class="btn btn-signal" href="tel:8015550100">Call to start</a>
+      </div>
+      <div class="tier featured">
+        <span class="flag">Most popular</span>
+        <h3>Site + Smart Leads</h3>
+        <div class="price">$2,500</div>
+        <div class="per">one-time, flat</div>
+        <ul>
+          <li>Everything in The Site</li>
+          <li>AI quote assistant — pre-qualifies every lead</li>
+          <li>Leads texted &amp; emailed to you instantly</li>
+          <li>Missed-call text-back, so no lead goes cold</li>
+          <li>Emergency routing for urgent jobs</li>
+        </ul>
+        <a class="btn btn-signal" href="tel:8015550100">Call to start</a>
+      </div>
+      <div class="tier">
+        <h3>Keep It Running</h3>
+        <div class="price">$149</div>
+        <div class="per">per month, cancel anytime</div>
+        <ul>
+          <li>Hosting, security, and backups</li>
+          <li>Unlimited small edits (photos, pricing, crew)</li>
+          <li>AI features and lead alerts covered</li>
+          <li>Monthly check that Google still loves you</li>
+          <li>Me, on call, when something's weird</li>
+        </ul>
+        <a class="btn btn-signal" href="tel:8015550100">Call to start</a>
+      </div>
+    </div>
+    <p class="price-note">Already have a site that just needs fixing? Call me anyway — sometimes the answer is a $300 repair, not a rebuild, and I'll tell you which.</p>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How it works</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Free mockup</h3>
+        <p>Text me your company name. I'll send a mockup of your new homepage — free, no strings. If you hate it, we part friends.</p>
+      </div>
+      <div class="step">
+        <h3>Ten questions</h3>
+        <p>You send photos of your work and answer ten quick questions by text. That's your entire homework assignment.</p>
+      </div>
+      <div class="step">
+        <h3>Built in a week</h3>
+        <p>I build, you review, we tweak. Half up front, half when you sign off. Most sites are live inside seven days.</p>
+      </div>
+      <div class="step">
+        <h3>Phone rings</h3>
+        <p>Your site goes live on your domain, wired to Google, with every lead landing in your texts. You get back to work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="mark" aria-hidden="true">CM</div>
+    <div>
+      <h2>One guy, not an agency. On purpose.</h2>
+      <p>I'm Cash Muir — I build software and websites out of Clearfield, Utah. I run my own software company, which means I build with the same tools the big agencies charge $10k to use, without the account managers and the invoices that read like a phone book.</p>
+      <p>I work with the trades because you're the easiest people to build for: you want the phone to ring, you want a fair flat price, and you want it done when I said it'd be done. That I can do.</p>
+      <p class="sig">— Cash</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's get your phone ringing</h2>
+    <p>Call or text — texting is fine, I know you're on a roof or in a cab half the day. Tell me your company name and trade, and I'll send you a free mockup of your new homepage.</p>
+    <a class="big-phone" href="tel:8015550100">(801) 555-0100</a>
+    <div class="ctas">
+      <a class="btn btn-signal" href="sms:8015550100?body=Hey%20Cash%2C%20I%27d%20like%20a%20free%20mockup.%20Company%20name%3A%20">Text me for a free mockup</a>
+      <a class="btn btn-ghost" href="mailto:hello@muirwebco.com">hello@muirwebco.com</a>
+    </div>
+    <p class="small">Based in Clearfield · Serving all of Utah · Muir Web Co. is a service of Pantreo LLC</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Muir Web Co. · Clearfield, Utah</div>
+</footer>
+
+<a class="callbar" href="tel:8015550100">📞 Call or text Cash — (801) 555-0100</a>
+
+</body>
+</html>
