@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muir Web Co. | Websites for Utah Realtors &amp; Contractors</title>
+<meta name="description" content="Custom websites for Utah real estate agents and contractors. Your brand, your listings, your leads. Flat pricing, live in 1 to 3 weeks. Built by Cash Muir in Clearfield, Utah.">
+<link rel="canonical" href="https://muirwebco.com/">
+<meta name="theme-color" content="#08090B">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Muir Web Co.">
+<meta property="og:url" content="https://muirwebco.com/">
+<meta property="og:title" content="Muir Web Co. | Websites for Utah Realtors &amp; Contractors">
+<meta property="og:description" content="Your brand, your listings, your leads. Flat price, live in 1 to 3 weeks. Text Cash for a free homepage mockup.">
+<meta property="og:image" content="https://muirwebco.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%2308090B'/%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23D9DDE2' stroke-width='3'/%3E%3Ctext x='32' y='40' font-family='Arial,sans-serif' font-weight='700' font-size='22' text-anchor='middle' fill='%23F2F3F5'%3EMW%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@800;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Muir Web Co.",
+  "url": "https://muirwebco.com/",
+  "telephone": "+1-385-482-3995",
+  "email": "hello@muirwebco.com",
+  "description": "Custom websites for Utah real estate agents and contractors.",
+  "areaServed": { "@type": "State", "name": "Utah" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Clearfield", "addressRegion": "UT", "addressCountry": "US" },
+  "founder": { "@type": "Person", "name": "Cash Muir" },
+  "priceRange": "$$"
+}
+</script>
+<style>
+/* ===================================================================
+   1. TOKENS
+   Contractor skin: blueprint + safety yellow (light = whiteprint,
+   dark = cyanotype). Realtor skin: dark showroom + white spotlight,
+   always dark. Realtor is the default.
+   =================================================================== */
+:root{
+  --bg:#EEF2F3;
+  --bg-2:#E2E9ED;
+  --card:#F8FAFB;
+  --ink:#133A63;
+  --ink-2:#4C6683;
+  --line:rgba(19,58,99,.22);
+  --grid:rgba(19,58,99,.05);
+  --grid-2:rgba(19,58,99,.10);
+  --hi:#F5C518;
+  --hi-ink:#0F2D4F;
+  --hi-line:#C99700;
+  --metal:#F5C518;
+  --metal-hover:#FFD84A;
+  --switch-bg:var(--card);
+  --switch-line:var(--ink);
+  --thumb-glow:none;
+  --wall:radial-gradient(90% 55% at 80% 8%,rgba(245,197,24,.28),transparent 70%),linear-gradient(170deg,#1b4a7d 0%,#0e2a49 55%,#071628 100%);
+  --display:'Big Shoulders Display',Impact,'Arial Narrow',sans-serif;
+  --body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:6px;
+  --ease:cubic-bezier(.65,0,.35,1);
+  color-scheme:light;
+  interpolate-size:allow-keywords;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0F2D4F;
+    --bg-2:#0C2643;
+    --card:#123459;
+    --ink:#EAF1F8;
+    --ink-2:#A9BDD3;
+    --line:rgba(220,235,255,.22);
+    --grid:rgba(200,225,255,.05);
+    --grid-2:rgba(200,225,255,.10);
+    --hi-line:#F5C518;
+    color-scheme:dark;
+  }
+}
+body[data-mode="agent"]{
+  --bg:#08090B;
+  --bg-2:#0E0F12;
+  --card:rgba(255,255,255,.035);
+  --ink:#F2F3F5;
+  --ink-2:#8F949C;
+  --line:rgba(255,255,255,.10);
+  --hi:#D9DDE2;
+  --hi-ink:#0A0B0D;
+  --hi-line:#F4F6F8;
+  --metal:linear-gradient(180deg,#FFFFFF 0%,#DDE1E5 45%,#B3B9C0 55%,#E8EBEE 100%);
+  --metal-hover:linear-gradient(180deg,#FFFFFF 0%,#EEF0F2 45%,#C9CED4 55%,#F4F5F7 100%);
+  --switch-bg:rgba(255,255,255,.05);
+  --switch-line:rgba(255,255,255,.16);
+  --thumb-glow:0 0 22px rgba(255,255,255,.28);
+  --wall:radial-gradient(90% 55% at 50% 0%,rgba(255,255,255,.2),transparent 70%),linear-gradient(170deg,#2c2f35 0%,#141518 55%,#060708 100%);
+  --display:'Syncopate','Archivo',sans-serif;
+  --r:18px;
+  color-scheme:dark;
+}
+
+/* ===================================================================
+   2. BASE
+   =================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(var(--grid-2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-2) 1px,transparent 1px),
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:160px 160px,160px 160px,32px 32px,32px 32px;
+  color:var(--ink);
+  font:400 17px/1.6 var(--body);
+  -webkit-font-smoothing:antialiased;
+}
+body[data-mode="agent"]{background-image:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3{text-wrap:balance}
+p,li{text-wrap:pretty}
+:focus-visible{outline:3px solid var(--hi);outline-offset:3px}
+body[data-mode="agent"] :focus-visible{outline-color:#fff}
+::selection{background:var(--hi);color:var(--hi-ink)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Only the current audience's content is shown */
+body[data-mode="trade"] [data-for="agent"],
+body[data-mode="agent"] [data-for="trade"]{display:none!important}
+.swap{animation:swapIn .45s ease backwards}
+@keyframes swapIn{from{opacity:0;transform:translateY(8px)}}
+
+/* ===================================================================
+   3. HEADER
+   =================================================================== */
+.site-head{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 84%,transparent);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.head-in{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.logo-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:6px;background:var(--metal);color:var(--hi-ink);font:900 17px/1 var(--display)}
+.logo-word{font:800 23px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{font:500 15px/1 var(--body);color:var(--ink-2);text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.head-mode{margin-left:auto}
+.nav + .head-mode{margin-left:8px}
+.head-call{flex:none}
+.progress{display:none}
+@media (max-width:1120px){.nav{display:none}.head-mode{margin-left:auto}}
+@media (max-width:760px){
+  .site-head .head-call{display:none}
+  .head-mode{transition:opacity .3s,transform .3s}
+  body.hero-switch-in .head-mode{opacity:0;transform:translateY(-6px);pointer-events:none}
+  body.hero-switch-in .logo-word{display:inline}
+}
+@media (max-width:440px){.logo-word{display:none}}
+
+/* ===================================================================
+   4. MODE SWITCH (sliding pill)
+   =================================================================== */
+.mode{
+  position:relative;isolation:isolate;display:inline-grid;grid-template-columns:1fr 1fr;
+  padding:3px;border-radius:999px;background:var(--switch-bg);border:1.5px solid var(--switch-line);
+}
+.mode button{
+  position:relative;z-index:1;appearance:none;border:0;background:none;cursor:pointer;
+  color:var(--ink-2);font:600 14px/1 var(--body);padding:10px 16px;border-radius:999px;
+  white-space:nowrap;transition:color .35s;
+}
+.mode button:hover{color:var(--ink)}
+.mode button[aria-pressed="true"]{color:var(--hi-ink)}
+.thumb{
+  position:absolute;z-index:0;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);
+  border-radius:999px;background:var(--metal);box-shadow:var(--thumb-glow);
+  transition:transform .55s var(--ease);
+}
+body[data-mode="trade"] .thumb{transform:translateX(100%)}
+.mode-lg button{font-size:16px;padding:14px 26px}
+.mode-lg{border-width:1.5px}
+.switch-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px;margin-bottom:10px}
+.switch-label{font:600 16px/1 var(--body);color:var(--ink-2)}
+.switch-hint{font-size:14px;color:var(--ink-2);margin-bottom:30px}
+.mode.nudge::after{
+  content:"";position:absolute;inset:-5px;border-radius:999px;border:1.5px solid var(--hi);
+  opacity:0;pointer-events:none;animation:ring 1.8s ease-out 1.4s 3;
+}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.14)}}
+
+/* ===================================================================
+   5. BUTTONS
+   =================================================================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:54px;padding:0 26px;border-radius:4px;
+  font:800 19px/1 var(--display);text-transform:uppercase;letter-spacing:.05em;
+  text-decoration:none;text-align:center;cursor:pointer;border:2px solid var(--ink);
+  transition:background .2s,color .2s,border-color .2s,box-shadow .2s,transform .2s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-hi{background:var(--metal);color:var(--hi-ink);border-color:var(--hi)}
+.btn-hi:hover{background:var(--metal-hover)}
+.btn-line{background:transparent;color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--bg)}
+.btn-sm{min-height:42px;padding:0 16px;font-size:16px}
+.btn[disabled]{opacity:.6;cursor:progress}
+
+/* ===================================================================
+   6. HERO
+   =================================================================== */
+.hero{position:relative;overflow-x:clip;padding:clamp(40px,6vw,84px) 0 clamp(72px,9vw,120px)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(36px,5vw,72px);align-items:center}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
+h1{font:900 clamp(60px,10vw,136px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+h1 span{display:block}
+.dimline{display:flex;align-items:center;gap:14px;margin:24px 0 26px;font:600 15px/1 var(--body);color:var(--ink-2);white-space:nowrap}
+.dimline::before,.dimline::after{content:"";flex:1;height:12px;border-bottom:1.5px solid var(--ink-2)}
+.dimline::before{border-left:1.5px solid var(--ink-2)}
+.dimline::after{border-right:1.5px solid var(--ink-2)}
+.dimline span{transform:translateY(5px)}
+.lede{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--ink-2);max-width:54ch;margin-bottom:32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+.fine{font-size:15px;color:var(--ink-2)}
+.proof{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--ink-2);max-width:52ch}
+.proof a{color:var(--ink);font-weight:600;text-underline-offset:3px}
+.proof-dot{flex:none;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.08),0 0 14px rgba(255,255,255,.8)}
+
+/* Phone */
+.phone-stage{position:relative;display:flex;justify-content:center;perspective:1300px}
+.phone{
+  position:relative;z-index:1;width:min(292px,72vw);aspect-ratio:9/19.2;
+  border-radius:48px;background:#05070a;padding:11px;
+  box-shadow:0 0 0 1.5px #3a4452,0 50px 90px -30px rgba(5,15,30,.55);
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;
+  transition:transform .25s ease-out;
+}
+.phone::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.10) 0%,transparent 28%,transparent 70%,rgba(255,255,255,.05) 100%);
+}
+.island{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:90px;height:26px;border-radius:20px;background:#000;z-index:3}
+.screen{position:relative;height:100%;border-radius:38px;overflow:hidden;color:#fff;padding:58px 11px 12px;background:var(--wall)}
+.lock-date{text-align:center;font:600 15px/1.2 var(--body);opacity:.88}
+.lock-time{text-align:center;font:700 74px/1 var(--body);letter-spacing:-.03em;margin:2px 0 20px;font-variant-numeric:tabular-nums}
+.feed{display:flex;flex-direction:column;gap:8px}
+.note{display:flex;gap:10px;padding:11px 12px;border-radius:18px;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);transition:opacity .4s}
+.note.new{animation:noteIn .55s cubic-bezier(.2,.9,.3,1.15) backwards}
+@keyframes noteIn{from{opacity:0;transform:translateY(-16px) scale(.95)}}
+.note:nth-child(2){opacity:.82}
+.note:nth-child(3){opacity:.55}
+.note-icon{flex:none;width:34px;height:34px;border-radius:9px;background:var(--metal);color:var(--hi-ink);display:grid;place-items:center;font:700 12px/1 var(--body)}
+.note-body{min-width:0;flex:1}
+.note-top{display:flex;justify-content:space-between;font:500 11px/1 var(--body);opacity:.7;margin-bottom:4px}
+.note-title{font:700 13.5px/1.25 var(--body)}
+.note-text{font:400 12.5px/1.35 var(--body);opacity:.92}
+
+/* Spotlight (realtor side only) */
+.spot{display:none}
+body[data-mode="agent"] .phone-stage{padding:64px 0 46px}
+body[data-mode="agent"] .spot{display:block;position:absolute;inset:0 -12%;pointer-events:none;z-index:0}
+.lamp{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:58%;height:18px;border-radius:50%;background:#fff;box-shadow:0 0 24px 4px rgba(255,255,255,.6),0 0 90px 30px rgba(255,255,255,.16)}
+.beam{position:absolute;top:27px;bottom:30px;left:50%;transform:translateX(-50%);width:100%;background:linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.06) 55%,rgba(255,255,255,.015));clip-path:polygon(21% 0,79% 0,100% 100%,0 100%);filter:blur(5px)}
+.floor{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:80px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.2),rgba(255,255,255,.05) 60%,transparent)}
+.spot.on .lamp,.spot.on .beam,.spot.on .floor{animation:lightOn 1.3s ease-out backwards}
+@keyframes lightOn{0%{opacity:0}8%{opacity:.9}12%{opacity:.1}20%{opacity:1}25%{opacity:.35}38%,100%{opacity:1}}
+
+/* ===================================================================
+   7. SECTIONS
+   =================================================================== */
+.sec{padding:clamp(80px,10vw,132px) 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:clamp(40px,5vw,60px);max-width:760px}
+h2{font:900 clamp(46px,7vw,92px)/.9 var(--display);text-transform:uppercase;letter-spacing:-.005em;margin-bottom:18px}
+.sec-lede{font-size:clamp(17px,1.5vw,19px);color:var(--ink-2);max-width:56ch}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,96px);align-items:start}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+
+/* Punch list */
+.punch{list-style:none;border-top:2px solid var(--ink)}
+.punch li{display:grid;grid-template-columns:34px 1fr;gap:18px;padding:26px 0;border-bottom:1px solid var(--line)}
+.box{width:26px;height:26px;border:2px solid var(--ink);border-radius:3px;margin-top:3px;position:relative}
+.punch.done .box{background:var(--metal);border-color:var(--hi)}
+.punch.done .box::after{content:"";position:absolute;left:7px;top:2px;width:7px;height:13px;border:solid var(--hi-ink);border-width:0 3px 3px 0;transform:rotate(45deg)}
+.punch h3{font:800 clamp(26px,2.6vw,32px)/1.05 var(--display);text-transform:uppercase;margin-bottom:8px}
+.punch p{color:var(--ink-2);max-width:56ch}
+.punch.cols{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+@media (max-width:760px){.punch.cols{grid-template-columns:1fr}}
+
+/* Demo sheets (contractor side) */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:960px){.grid-3{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+.sheet{display:flex;flex-direction:column;text-decoration:none;background:var(--card);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.sheet:hover{transform:translateY(-4px);box-shadow:0 18px 30px -18px rgba(5,20,40,.5)}
+.art{
+  aspect-ratio:16/10;border-bottom:1.5px solid var(--ink);padding:14px;background-color:var(--bg-2);
+  background-image:linear-gradient(var(--grid-2) 1px,transparent 1px),linear-gradient(90deg,var(--grid-2) 1px,transparent 1px);
+  background-size:20px 20px;color:var(--ink);
+}
+.art svg{width:100%;height:100%}
+.art .hl{stroke:var(--hi-line)}
+.art .dim{stroke:var(--ink-2);stroke-width:1}
+.art text{fill:var(--ink-2);stroke:none;font:600 10px var(--body)}
+.sheet-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
+.sheet-kind{font:600 14px/1 var(--body);color:var(--ink-2);margin-bottom:10px}
+.sheet h3{font:800 30px/1 var(--display);text-transform:uppercase;margin-bottom:10px}
+.sheet p{color:var(--ink-2);font-size:15.5px;margin-bottom:20px;flex:1}
+.open{font:800 18px/1 var(--display);text-transform:uppercase;letter-spacing:.05em;text-decoration:underline;text-decoration-color:var(--hi);text-decoration-thickness:2px;text-underline-offset:5px}
+.note-under{margin-top:28px;padding:18px 22px;border-left:4px solid var(--hi);background:var(--card);color:var(--ink-2);max-width:820px}
+.note-under a{color:var(--ink);font-weight:600}
+
+/* Case study (realtor side) */
+.case{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+@media (max-width:960px){.case{grid-template-columns:1fr}}
+.browser{
+  display:block;text-decoration:none;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0c0d10;
+  box-shadow:0 50px 90px -40px rgba(0,0,0,.9),0 0 80px -20px rgba(255,255,255,.08);
+}
+.bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.03)}
+.bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.16)}
+.bar span{flex:1;max-width:280px;margin:0 auto;text-align:center;font:500 12.5px/1 var(--body);color:var(--ink-2);background:rgba(255,255,255,.05);border-radius:999px;padding:7px 12px}
+.bscreen{position:relative;aspect-ratio:16/10;overflow:hidden;background:radial-gradient(70% 60% at 72% 88%,rgba(255,92,170,.45),transparent 70%),linear-gradient(180deg,#170c15,#090608)}
+.bscreen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bscreen::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,5,8,.88) 0%,rgba(8,5,8,.45) 55%,rgba(8,5,8,.05))}
+.bcopy{position:absolute;left:6%;bottom:13%;z-index:1;max-width:58%;color:#fff}
+.bcopy small{display:block;font:600 11px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#ff9ccd;margin-bottom:10px}
+.bcopy strong{display:block;font:700 clamp(18px,2.5vw,32px)/1.08 var(--body);letter-spacing:-.01em}
+.live{display:inline-block;background:var(--metal);color:var(--hi-ink);font:700 13px/1 var(--body);padding:7px 12px;border-radius:999px;margin-bottom:16px}
+.case h3{font:700 clamp(22px,2.4vw,30px)/1.2 var(--display);letter-spacing:.02em;margin-bottom:14px}
+.case-copy>p{color:var(--ink-2)}
+.facts{list-style:none;margin:22px 0 30px;display:grid;gap:14px}
+.facts li{position:relative;padding-left:22px;color:var(--ink-2);font-size:16px;line-height:1.5}
+.facts li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.6)}
+.facts b{color:var(--ink);font-weight:600}
+
+/* How we build it (realtor side) */
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:760px){.layers{grid-template-columns:1fr}}
+.layer{position:relative;padding:32px 30px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.layer svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:20px;filter:drop-shadow(0 0 6px rgba(255,255,255,.45))}
+.layer h3{font:600 22px/1.25 var(--body);margin-bottom:10px}
+.layer p{color:var(--ink-2);font-size:16px}
+
+/* ROI calculator */
+.calc{position:relative;display:grid;grid-template-columns:1.1fr .9fr;border:1.5px solid var(--ink);border-radius:var(--r);background:var(--card);overflow:hidden}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
+.calc-in{padding:clamp(26px,4vw,44px);display:grid;gap:38px;align-content:center}
+.calc-out{padding:clamp(26px,4vw,44px);background:var(--bg-2);border-left:1.5px solid var(--ink);display:flex;flex-direction:column;justify-content:center}
+@media (max-width:860px){.calc-out{border-left:0;border-top:1.5px solid var(--ink)}}
+.slider-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:12px}
+.slider-top label{font:600 16px/1.3 var(--body)}
+.slider-top output{font:800 30px/1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.calc input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer;--p:50%}
+.calc input[type=range]:focus-visible{outline-offset:6px}
+.calc input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--hi) var(--p),var(--line) var(--p))}
+.calc input[type=range]::-moz-range-track{height:6px;border-radius:999px;background:var(--line)}
+.calc input[type=range]::-moz-range-progress{height:6px;border-radius:999px;background:var(--hi)}
+.calc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:var(--metal);border:3px solid var(--bg);box-shadow:0 0 0 1.5px var(--hi),0 4px 14px rgba(0,0,0,.35)}
+.calc input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--metal);border:3px solid var(--bg);box-shadow:0 0 0 1.5px var(--hi),0 4px 14px rgba(0,0,0,.35)}
+.calc-k{font:600 15px/1.3 var(--body);color:var(--ink-2);margin-bottom:10px}
+.calc-big{font:900 clamp(58px,7vw,92px)/.9 var(--display);font-variant-numeric:tabular-nums;margin-bottom:18px;white-space:nowrap}
+.calc-line{font-size:18px;margin-bottom:8px}
+.calc-line b{font-weight:700}
+.calc-fine{font-size:14px;color:var(--ink-2)}
+
+/* Pricing */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+@media (max-width:960px){.prices{grid-template-columns:1fr;max-width:520px}}
+.price{position:relative;display:flex;flex-direction:column;padding:34px 28px 30px;background:var(--card);border:1.5px solid var(--ink);border-radius:var(--r)}
+.price.top{border-width:3px;border-color:var(--hi);box-shadow:0 0 0 1.5px var(--ink)}
+.tagline{position:absolute;top:-15px;left:24px;background:var(--metal);color:var(--hi-ink);font:700 13px/1 var(--body);padding:8px 11px;border-radius:3px}
+.price-name{font:800 26px/1 var(--display);text-transform:uppercase;margin-bottom:16px}
+.price-amt{font:900 76px/.85 var(--display);font-variant-numeric:tabular-nums}
+.price-per{color:var(--ink-2);font-size:15px;margin:10px 0 22px;padding-bottom:20px;border-bottom:1.5px dashed var(--line)}
+.price ul{list-style:none;display:grid;align-content:start;gap:11px;margin-bottom:28px;flex:1}
+.price li{display:grid;grid-template-columns:16px 1fr;gap:10px;font-size:15.5px;line-height:1.45}
+.price li::before{content:"";width:9px;height:9px;margin-top:7px;background:var(--ink)}
+.price.top li::before{background:var(--hi)}
+.price .btn{width:100%}
+.addon{margin:-8px 0 24px;padding:12px 14px;border:1.5px dashed var(--ink-2);border-radius:4px;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.addon strong{color:var(--ink)}
+.price-foot{margin-top:28px;color:var(--ink-2);max-width:70ch}
+.price-foot strong{color:var(--ink)}
+
+/* Steps */
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:repeating-linear-gradient(90deg,var(--ink-2) 0 1px,transparent 1px 24px);opacity:.6}
+.step{position:relative;padding:44px 28px 0 0}
+.step::before{content:"";position:absolute;top:-9px;left:0;width:16px;height:16px;border-radius:50%;background:var(--metal);box-shadow:0 0 0 4px var(--bg),0 0 0 5.5px var(--ink)}
+.day{font:700 15px/1 var(--body);color:var(--ink-2)}
+.step h3{font:800 34px/1 var(--display);text-transform:uppercase;margin:10px 0 12px}
+.step p{color:var(--ink-2);font-size:15.5px}
+@media (max-width:860px){
+  .steps{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--ink);padding-left:30px}
+  .steps::before{display:none}
+  .step{padding:0 0 38px}
+  .step:last-child{padding-bottom:0}
+  .step::before{left:-39px;top:0}
+}
+
+/* FAQ */
+.faq{max-width:880px;border-top:2px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;
+  padding:24px 0;font:600 clamp(18px,1.8vw,21px)/1.35 var(--body);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:none;width:11px;height:11px;margin-right:4px;
+  border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);
+  transform:translateY(-3px) rotate(45deg);transition:transform .35s var(--ease);
+}
+.faq details[open] summary::after{transform:translateY(3px) rotate(225deg)}
+.faq summary:hover{color:var(--ink-2)}
+.faq .ans{padding:0 48px 26px 0;color:var(--ink-2);max-width:70ch}
+.faq details::details-content{height:0;overflow:clip;transition:height .4s var(--ease),content-visibility .4s allow-discrete}
+.faq details[open]::details-content{height:auto}
+
+/* About */
+.about-copy p{font-size:clamp(18px,1.6vw,21px);line-height:1.6;margin-bottom:20px;max-width:58ch}
+.about-copy p.sub{color:var(--ink-2)}
+.sig{font:900 40px/1 var(--display);text-transform:uppercase;margin-top:8px}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.big-phone{display:inline-block;font:900 clamp(52px,7.5vw,96px)/.95 var(--display);text-decoration:none;margin:10px 0 24px;border-bottom:6px solid var(--hi);font-variant-numeric:tabular-nums}
+.big-phone:hover{color:var(--ink-2)}
+.contact-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+.email{color:var(--ink-2)}
+.email a{color:var(--ink);font-weight:600}
+.form{position:relative;padding:32px 28px;background:var(--card);border:1.5px solid var(--ink);border-radius:var(--r)}
+.form h3{font:800 32px/1 var(--display);text-transform:uppercase;margin-bottom:6px}
+.form .hint{color:var(--ink-2);margin-bottom:24px}
+.field{margin-bottom:18px}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:520px){.row-2{grid-template-columns:1fr}}
+.form label{display:block;font:600 15px/1 var(--body);margin-bottom:8px}
+.form label .opt{font-weight:400;color:var(--ink-2)}
+.form input,.form select,.form textarea{
+  width:100%;font:500 17px/1.4 var(--body);color:var(--ink);background-color:var(--bg);
+  border:1.5px solid var(--line);border-radius:4px;padding:13px 14px;outline:none;
+  -webkit-appearance:none;appearance:none;transition:border-color .2s,box-shadow .2s;
+}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px var(--hi)}
+.form select{
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%);
+  background-position:calc(100% - 22px) 52%,calc(100% - 16px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px;
+}
+.form textarea{min-height:96px;resize:vertical}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .btn{width:100%;margin-top:6px}
+.form-status{margin-top:14px;font-size:15px;min-height:1.4em}
+.form-status.err{color:#e0574f}
+.done h3{margin-bottom:10px}
+.done p{color:var(--ink-2)}
+
+/* Footer */
+.foot{padding:40px 0 48px;border-top:1px solid var(--line)}
+.titleblock{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;border:2px solid var(--ink);border-radius:4px;background:var(--card)}
+.titleblock>div{padding:16px 18px;border-right:1px solid var(--line)}
+.titleblock>div:last-child{border-right:0}
+.tb-k{display:block;font:500 13px/1 var(--body);color:var(--ink-2);margin-bottom:8px}
+.tb-v{font:700 16px/1.3 var(--body)}
+.tb-brand{font:900 26px/1 var(--display);text-transform:uppercase}
+@media (max-width:820px){
+  .titleblock{grid-template-columns:1fr 1fr}
+  .titleblock>div:nth-child(2){border-right:0}
+  .titleblock>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+.foot-links{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:22px;font-size:15px;color:var(--ink-2)}
+.foot-links a{text-decoration:none}
+.foot-links a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* Mobile call bar */
+.mbar{display:none}
+@media (max-width:760px){
+  .mbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1.4fr 1fr;gap:10px;
+    padding:10px 14px max(10px,env(safe-area-inset-bottom));
+    background:color-mix(in srgb,var(--bg) 90%,transparent);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  }
+  .mbar .btn{min-height:50px}
+  body{padding-bottom:84px}
+}
+
+/* ===================================================================
+   8. REALTOR SKIN OVERRIDES
+   =================================================================== */
+body[data-mode="agent"] .site-head{background:rgba(8,9,11,.7)}
+body[data-mode="agent"] .logo-mark{border-radius:50%;font:700 11px/1 var(--display)}
+body[data-mode="agent"] .logo-word{font:700 14.5px/1 var(--display);letter-spacing:.12em}
+body[data-mode="agent"] .btn{border-radius:999px;font:600 15.5px/1 var(--body);text-transform:none;letter-spacing:.01em;border-width:1px;min-height:52px}
+body[data-mode="agent"] .btn-hi{border-color:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 30px -10px rgba(255,255,255,.35)}
+body[data-mode="agent"] .btn-hi:hover{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 12px 36px -8px rgba(255,255,255,.5)}
+body[data-mode="agent"] .btn-line{border-color:rgba(255,255,255,.22)}
+body[data-mode="agent"] .btn-line:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+body[data-mode="agent"] .btn-sm{min-height:40px;font-size:14.5px}
+body[data-mode="agent"] h1{font:700 clamp(28px,4.4vw,58px)/1.1 var(--display);letter-spacing:.01em}
+body[data-mode="agent"] h2{font:700 clamp(24px,3.4vw,44px)/1.15 var(--display);letter-spacing:.01em}
+body[data-mode="agent"] .dimline::before,
+body[data-mode="agent"] .dimline::after{border-color:rgba(255,255,255,.25);border-width:0 0 1px 0;height:1px}
+body[data-mode="agent"] .dimline span{transform:none;letter-spacing:.04em}
+body[data-mode="agent"] .hero{background:radial-gradient(50% 70% at 76% 0%,rgba(255,255,255,.07),transparent 70%)}
+body[data-mode="agent"] .phone{box-shadow:0 0 0 2px #4b4f56,0 0 0 3.5px #9BA0A8,0 50px 90px -30px rgba(0,0,0,.9)}
+body[data-mode="agent"] .price,
+body[data-mode="agent"] .form,
+body[data-mode="agent"] .titleblock,
+body[data-mode="agent"] .calc{border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+body[data-mode="agent"] .calc-out{background:rgba(255,255,255,.025);border-color:var(--line)}
+body[data-mode="agent"] .calc-big{font:700 clamp(36px,4.6vw,58px)/1 var(--display)}
+body[data-mode="agent"] .slider-top output{font:700 20px/1 var(--display)}
+body[data-mode="agent"] .price.top{border-color:rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 70px -12px rgba(255,255,255,.18)}
+body[data-mode="agent"] .tagline{border-radius:999px}
+body[data-mode="agent"] .price-name,
+body[data-mode="agent"] .punch h3,
+body[data-mode="agent"] .step h3,
+body[data-mode="agent"] .form h3{font:600 22px/1.25 var(--body);text-transform:none;letter-spacing:-.01em}
+body[data-mode="agent"] .price-amt{font:700 46px/1 var(--display)}
+body[data-mode="agent"] .price-per{border-bottom:1px solid var(--line)}
+body[data-mode="agent"] .price li::before{border-radius:50%;width:6px;height:6px;margin-top:9px;background:var(--ink-2)}
+body[data-mode="agent"] .price.top li::before{background:#fff;box-shadow:0 0 8px rgba(255,255,255,.7)}
+body[data-mode="agent"] .addon{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)}
+body[data-mode="agent"] .punch,
+body[data-mode="agent"] .faq{border-top:1px solid var(--line)}
+body[data-mode="agent"] .box{border-radius:50%;border:1px solid rgba(255,255,255,.35);width:22px;height:22px;margin-top:4px}
+body[data-mode="agent"] .steps{border-top:1px solid var(--line)}
+body[data-mode="agent"] .steps::before{display:none}
+body[data-mode="agent"] .step::before{background:#fff;box-shadow:0 0 0 5px var(--bg),0 0 18px 2px rgba(255,255,255,.55)}
+body[data-mode="agent"] .day{font-size:13px;letter-spacing:.08em}
+@media (max-width:860px){body[data-mode="agent"] .steps{border-left:1px solid var(--line)}}
+body[data-mode="agent"] .sig{font:700 24px/1 var(--display);letter-spacing:.1em}
+body[data-mode="agent"] .big-phone{font:700 clamp(30px,4.4vw,54px)/1.15 var(--display);border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:6px}
+body[data-mode="agent"] .form input,
+body[data-mode="agent"] .form select,
+body[data-mode="agent"] .form textarea{background-color:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px}
+body[data-mode="agent"] .form input:focus,
+body[data-mode="agent"] .form select:focus,
+body[data-mode="agent"] .form textarea:focus{border-color:rgba(255,255,255,.5);box-shadow:0 0 0 3px rgba(255,255,255,.1)}
+body[data-mode="agent"] .tb-brand{font:700 15px/1.2 var(--display);letter-spacing:.08em}
+body[data-mode="agent"] .titleblock>div{border-color:var(--line)}
+body[data-mode="agent"] .mode{border-width:1px}
+
+/* Cursor-following glow on glass cards (realtor side, mouse/trackpad only) */
+@media (hover:hover) and (pointer:fine){
+  body[data-mode="agent"] [data-glow]::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;
+    padding:1px;opacity:0;transition:opacity .35s;
+    background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.65),transparent 45%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  body[data-mode="agent"] [data-glow]::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;opacity:0;transition:opacity .35s;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.06),transparent 50%);
+  }
+  body[data-mode="agent"] [data-glow]:hover::before,
+  body[data-mode="agent"] [data-glow]:hover::after{opacity:1}
+}
+
+/* ===================================================================
+   9. SCROLL-DRIVEN EFFECTS (progressive enhancement)
+   =================================================================== */
+@supports (animation-timeline: scroll()){
+  .progress{
+    display:block;position:absolute;left:0;right:0;bottom:-1px;height:2px;
+    background:var(--hi);transform-origin:0 50%;transform:scaleX(0);
+    animation:progress linear both;animation-timeline:scroll(root);
+  }
+  body[data-mode="agent"] .progress{background:linear-gradient(90deg,rgba(255,255,255,.2),#fff);box-shadow:0 0 12px rgba(255,255,255,.7)}
+  @keyframes progress{to{transform:scaleX(1)}}
+}
+@supports (animation-timeline: view()){
+  .browser{animation:tiltIn linear both;animation-timeline:view();animation-range:entry 0% cover 38%}
+  @keyframes tiltIn{from{opacity:.25;transform:perspective(1400px) rotateX(24deg) translateY(70px) scale(.9)}to{opacity:1;transform:none}}
+}
+
+/* ===================================================================
+   10. VIEW TRANSITION (circular reveal when switching sides)
+   =================================================================== */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .phone{transform:none!important}
+}
+</style>
+</head>
+<body data-mode="agent">
+<script>
+/* Choose the side before first paint. Realtor is the default.
+   /contractors or ?for=contractors opens the contractor side; a returning visitor keeps their last choice. */
+(function(){
+  var m = 'agent', fresh = true;
+  try{
+    var path = location.pathname.replace(/\/+$/,'').toLowerCase();
+    var p = (new URLSearchParams(location.search).get('for') || '').toLowerCase();
+    var saved = localStorage.getItem('mwc-mode');
+    if(saved) fresh = false;
+    if(path === '/contractors' || p === 'contractors' || p === 'trades'){ m = 'trade'; fresh = false; }
+    else if(path === '/realtors' || p === 'realtors' || p === 'agents'){ m = 'agent'; fresh = false; }
+    else if(saved === 'trade'){ m = 'trade'; }
+  }catch(e){}
+  document.body.dataset.mode = m;
+  if(fresh) document.body.classList.add('fresh');
+})();
+</script>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="logo" href="#top" aria-label="Muir Web Co. home">
+      <span class="logo-mark">MW</span>
+      <span class="logo-word">Muir Web Co.</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#math">The math</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="mode head-mode" role="group" aria-label="Choose your side of the site">
+      <button type="button" data-set-mode="agent" aria-pressed="true">Realtors</button>
+      <button type="button" data-set-mode="trade" aria-pressed="false">Contractors</button>
+      <span class="thumb" aria-hidden="true"></span>
+    </div>
+    <a class="btn btn-hi btn-sm head-call" href="tel:+13854823995">(385) 482-3995</a>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="switch-row">
+        <span class="switch-label" id="heroSwitchLabel">I'm a</span>
+        <div class="mode mode-lg" id="heroMode" role="group" aria-labelledby="heroSwitchLabel">
+          <button type="button" data-set-mode="agent" aria-pressed="true">Realtor</button>
+          <button type="button" data-set-mode="trade" aria-pressed="false">Contractor</button>
+          <span class="thumb" aria-hidden="true"></span>
+        </div>
+      </div>
+      <p class="switch-hint">Tap to switch. The whole site changes to match.</p>
+
+      <h1>
+        <span class="swap" data-for="agent">Your listings, in the best light.</span>
+        <span class="swap" data-for="trade">Websites that ring your phone.</span>
+      </h1>
+      <div class="dimline" aria-hidden="true"><span>Flat price, live in 1 to 3 weeks</span></div>
+
+      <p class="lede swap" data-for="agent">Custom websites for real estate agents who are done with the brokerage template. Your brand, your listings, and your leads, not Zillow's. Built to make people remember your name.</p>
+      <p class="lede swap" data-for="trade">I build sites for roofers, excavators, HVAC, and concrete crews. No agency retainers, no six-week timelines, no marketing jargon. Just a fast site with a quote assistant that sorts out real jobs before they ever call you.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-hi swap" data-for="agent" href="sms:+13854823995" data-sms="Hey Cash, I'm a realtor and I'd like a free homepage mockup. Name and brokerage: ">Get a free homepage mockup</a>
+        <a class="btn btn-hi swap" data-for="trade" href="sms:+13854823995" data-sms="Hey Cash, I'd like a free mockup. Company name: ">Text me for a free mockup</a>
+        <a class="btn btn-line" href="#work">See the work</a>
+      </div>
+      <p class="proof swap" data-for="agent"><span class="proof-dot" aria-hidden="true"></span><span>Built <a href="https://kylamuirrealty.com" target="_blank" rel="noopener">kylamuirrealty.com</a> for Kyla Muir, voted #1 in Best of Utah Valley 2025 and 2026.</span></p>
+      <p class="fine swap" data-for="trade">Ask for Cash. Yes, that's my real name.</p>
+    </div>
+
+    <div class="phone-stage" aria-hidden="true">
+      <div class="spot" id="spot"><div class="beam"></div><div class="lamp"></div><div class="floor"></div></div>
+      <div class="phone" id="phone">
+        <div class="island"></div>
+        <div class="screen">
+          <div class="lock-date" id="lockDate">Wednesday, October 14</div>
+          <div class="lock-time" id="lockTime">9:41</div>
+          <div class="feed" id="feed"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEMS ============ -->
+<section class="sec" id="problems">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2>Sound familiar?</h2>
+      <p class="sec-lede swap" data-for="agent">If any of these hit home, you're doing the work and somebody else is getting the lead.</p>
+      <p class="sec-lede swap" data-for="trade">If any of these hit home, your website is costing you jobs every week. They go to whoever shows up first on a homeowner's phone.</p>
+    </div>
+    <ul class="punch swap" data-for="agent">
+      <li><span class="box"></span><div><h3>You're wearing the brokerage's site</h3><p>A template that looks like every other agent in the office. Nobody remembers it, and nobody comes back to it.</p></div></li>
+      <li><span class="box"></span><div><h3>Zillow owns your buyers</h3><p>Buyers find your listing, click through, and get routed to whoever paid for the lead. You did the marketing. Someone else got the call.</p></div></li>
+      <li><span class="box"></span><div><h3>No reason to come back</h3><p>No live listings, no search, nothing to save. People look once and forget your name by the time they're ready to buy.</p></div></li>
+    </ul>
+    <ul class="punch swap" data-for="trade">
+      <li><span class="box"></span><div><h3>You're invisible on Google</h3><p>Someone in your own town searches "roofer near me" and finds your competitors. You're on page three, or not there at all.</p></div></li>
+      <li><span class="box"></span><div><h3>Your site breaks on phones</h3><p>Most customers find you on a phone. If they have to pinch and zoom to find your number, they're already calling the next guy.</p></div></li>
+      <li><span class="box"></span><div><h3>Your leads are garbage</h3><p>"Hey do you do roofs" at 10pm. No address, no details, no budget. Two days of phone tag and the job goes somewhere else.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sec-head swap" data-for="agent">
+      <h2>One we already built</h2>
+      <p class="sec-lede">Kyla Muir Realty is live right now. Here's what went into it, and what yours gets too.</p>
+    </div>
+    <div class="sec-head swap" data-for="trade">
+      <h2>See it before you buy it</h2>
+      <p class="sec-lede">Three live demo sites. Open them on your phone, since that's where your customers are, and try the quote assistant at the bottom of each one.</p>
+    </div>
+
+    <div class="case swap" data-for="agent">
+      <a class="browser" href="https://kylamuirrealty.com" target="_blank" rel="noopener" aria-label="Open kylamuirrealty.com in a new tab">
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>kylamuirrealty.com</span></div>
+        <div class="bscreen">
+          <img src="https://www.kylamuirrealty.com/hero-car.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+          <div class="bcopy">
+            <small>REALTOR&reg; &nbsp;Santaquin, Utah</small>
+            <strong>Every home. Every detail. Handled.</strong>
+          </div>
+        </div>
+      </a>
+      <div class="case-copy">
+        <span class="live">Live client site</span>
+        <h3>Kyla Muir Realty</h3>
+        <p>Kyla was voted #1 in the Daily Herald's Best of Utah Valley, and half of Utah County knows her by her pink '57 Bel Air. Her site had to be as memorable as the car.</p>
+        <ul class="facts">
+          <li><b>A brand built around Rosey.</b> Dark, retro-futurist, and pink, so it looks like her and nobody else.</li>
+          <li><b>A page for every town she works.</b> Santaquin, Payson, Salem, Spanish Fork, Springville, Mapleton, and Orem, each one built to show up on Google.</li>
+          <li><b>Seller leads from day one.</b> A free home value report pulls in homeowners who are thinking about listing.</li>
+          <li><b>Guided buyer intake.</b> Three quick questions, then the lead lands with Kyla ready for a real conversation.</li>
+          <li><b>Proof up front.</b> Four straight years of Best of Utah Valley awards, press, and her MLS listings, all one tap away.</li>
+        </ul>
+        <a class="btn btn-hi" href="https://kylamuirrealty.com" target="_blank" rel="noopener">Visit kylamuirrealty.com</a>
+      </div>
+    </div>
+
+    <div class="grid-3 swap" data-for="trade">
+      <a class="sheet" href="https://roofing-demo-gamma.vercel.app/" target="_blank" rel="noopener">
+        <div class="art">
+          <svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+            <path class="dim" d="M48 22h224M48 17v10M272 17v10"/>
+            <text x="160" y="15" text-anchor="middle">Pitch 6/12, 32 squares</text>
+            <path d="M30 176h260"/><path d="M74 176v-68h172v68"/>
+            <path class="hl" stroke-width="3" d="M52 112 160 46l108 66"/>
+            <path d="M96 99h128M118 86h84M140 73h40" stroke-dasharray="7 5" opacity=".7"/>
+            <rect x="144" y="134" width="32" height="42"/>
+            <rect x="94" y="126" width="30" height="24"/><path d="M109 126v24M94 138h30"/>
+            <rect x="196" y="126" width="30" height="24"/><path d="M211 126v24M196 138h30"/>
+            <path d="M214 60V38h16v32"/>
+          </svg>
+        </div>
+        <div class="sheet-body">
+          <span class="sheet-kind">Roofing demo</span>
+          <h3>Wasatch Ridge Roofing</h3>
+          <p>Storm and insurance work up front, tap-to-call everywhere, and a quote assistant that asks what your estimator would.</p>
+          <span class="open">Open the demo</span>
+        </div>
+      </a>
+      <a class="sheet" href="https://excavation-demo.vercel.app/" target="_blank" rel="noopener">
+        <div class="art">
+          <svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+            <path d="M20 92h112M232 92h68"/><path d="M132 92v76h100V92"/>
+            <path d="M132 120h100M132 146h100" stroke-dasharray="6 6" opacity=".6"/>
+            <path d="M20 120h112M232 120h68M20 146h112M232 146h68" stroke-dasharray="3 7" opacity=".4"/>
+            <rect x="26" y="76" width="74" height="16" rx="8"/>
+            <circle cx="36" cy="84" r="3"/><circle cx="90" cy="84" r="3"/>
+            <path d="M38 76V52h40v24"/><path d="M50 52V40h22v12"/>
+            <path class="hl" stroke-width="3" d="M78 58 128 30l34 54"/>
+            <path class="hl" stroke-width="3" d="M162 84l14 6-4 14-18-6z"/>
+            <path class="dim" d="M256 92v76M251 92h10M251 168h10"/>
+            <text x="266" y="134">9 ft</text>
+          </svg>
+        </div>
+        <div class="sheet-body">
+          <span class="sheet-kind">Excavation demo</span>
+          <h3>Davis Dirtworks</h3>
+          <p>Built for basement digs, grading, and trenching. The quote assistant asks about site access and timeline so every bid starts smart.</p>
+          <span class="open">Open the demo</span>
+        </div>
+      </a>
+      <a class="sheet" href="https://hvac-demo-beige.vercel.app/" target="_blank" rel="noopener">
+        <div class="art">
+          <svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+            <path d="M40 180h240"/><rect x="92" y="62" width="136" height="112" rx="4"/>
+            <path d="M104 168v12M216 168v12"/>
+            <circle cx="160" cy="118" r="40"/><circle cx="160" cy="118" r="6"/>
+            <path class="hl" stroke-width="3" d="M160 112c-6-16 4-26 14-26 2 12-4 22-14 26zM166 120c16-4 25 6 24 16-12 1-21-6-24-16zM154 122c-10 13-24 11-29 2 8-9 20-10 29-2z"/>
+            <path d="M118 46q8-10 16 0t16 0M170 46q8-10 16 0t16 0" opacity=".7"/>
+            <path class="dim" d="M244 62v112M239 62h10M239 174h10"/>
+            <text x="252" y="122">36 in</text>
+          </svg>
+        </div>
+        <div class="sheet-body">
+          <span class="sheet-kind">HVAC demo</span>
+          <h3>Summit Heating &amp; Air</h3>
+          <p>Hot and cold branding with a 24/7 emergency lane. If someone's system is down, the site sends them straight to your phone.</p>
+          <span class="open">Open the demo</span>
+        </div>
+      </a>
+    </div>
+    <p class="note-under swap" data-for="trade">These are demo companies, not real clients. Your site gets your name, your photos, your reviews, and your service area. Want to see your business in one first? <a href="sms:+13854823995" data-sms="Hey Cash, I'd like a free mockup. Company name: ">Text me your company name</a> and I'll send a free homepage mockup.</p>
+  </div>
+</section>
+
+<!-- ============ REALTORS: HOW WE BUILD IT ============ -->
+<section class="sec swap" id="build" data-for="agent">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How we build it</h2>
+      <p class="sec-lede">Every agent site is built in four layers. Here's what's under the hood of yours.</p>
+    </div>
+    <div class="layers">
+      <article class="layer" data-glow>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.6 6.9 6.9 2.6-6.9 2.6-2.6 6.9-2.6-6.9L2.5 12l6.9-2.6z"/></svg>
+        <h3>A brand that's actually yours</h3>
+        <p>We start with you, not a template. Kyla's whole site is built around her car. Yours gets its own colors, type, and photography, with a feel nobody else in your office has.</p>
+      </article>
+      <article class="layer" data-glow>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9.5H3z"/><path d="M9.5 20.5v-6h5v6"/></svg>
+        <h3>Listings that live on your site</h3>
+        <p>Featured listings you update yourself in a couple of taps. Add IDX and buyers can search every active MLS listing without ever leaving your site for Zillow.</p>
+      </article>
+      <article class="layer" data-glow>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.5-4.5"/></svg>
+        <h3>Built to be found</h3>
+        <p>A page for every city you work, structured data that tells Google exactly who you are, a sitemap submitted to Search Console, and your Google Business profile wired in.</p>
+      </article>
+      <article class="layer" data-glow>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9a6 6 0 0112 0c0 6.5 2.5 8.5 2.5 8.5h-17S6 15.5 6 9z"/><path d="M10 20.5a2 2 0 004 0"/></svg>
+        <h3>Leads that come to you</h3>
+        <p>Showing requests, home value requests, and buyer questions go straight to you. No lead fees, no portal in the middle, no waiting on someone else's follow-up.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTRACTORS: WHAT SHIPS ============ -->
+<section class="sec swap" id="included" data-for="trade">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Every build ships with</h2>
+      <p class="sec-lede">The punch list, closed out.</p>
+    </div>
+    <ul class="punch done cols">
+      <li><span class="box"></span><div><h3>Built for phones first</h3><p>Sticky tap-to-call, fast loading, and it looks right on every screen.</p></div></li>
+      <li><span class="box"></span><div><h3>Google-ready</h3><p>Set up to show for your trade plus your city, and wired to your Google Business profile.</p></div></li>
+      <li><span class="box"></span><div><h3>Your real work</h3><p>Your photos, your reviews, your license number, your service area. No stock-photo nonsense.</p></div></li>
+      <li><span class="box"></span><div><h3>Live in 1 to 3 weeks</h3><p>You send photos and answer ten questions. I handle everything else, including your domain. You get a real launch date up front.</p></div></li>
+      <li><span class="box"></span><div><h3>You own it</h3><p>Your domain, your site. No hostage situations if we ever part ways.</p></div></li>
+      <li><span class="box"></span><div><h3>Straight answers</h3><p>One guy, my cell number, plain English. No account managers, no ticket queue.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ THE MATH ============ -->
+<section class="sec" id="math">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Do the math</h2>
+      <p class="sec-lede swap" data-for="agent">Slide these to match your business. One extra closing a year covers the whole thing.</p>
+      <p class="sec-lede swap" data-for="trade">Slide these to match your business. One extra job usually covers the whole thing.</p>
+    </div>
+    <div class="calc" data-glow>
+      <div class="calc-in">
+        <div class="slider">
+          <div class="slider-top"><label for="calcVal" id="calcValLabel">Average commission</label><output id="calcValOut" for="calcVal">$10,000</output></div>
+          <input type="range" id="calcVal" min="2000" max="30000" step="500" value="10000">
+        </div>
+        <div class="slider">
+          <div class="slider-top"><label for="calcNum" id="calcNumLabel">Extra closings a year from your site</label><output id="calcNumOut" for="calcNum">2</output></div>
+          <input type="range" id="calcNum" min="1" max="12" step="1" value="2">
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <span class="calc-k">Extra money in a year</span>
+        <strong class="calc-big" id="calcBig">$20,000</strong>
+        <p class="calc-line" id="calcLine">One closing pays for the whole first year.</p>
+        <p class="calc-fine" id="calcFine">First-year cost: $2,840 for Agent Site + IDX and a year of Keep It Running, before your IDX Broker fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pricing, right here like it should be</h2>
+      <p class="sec-lede swap" data-for="agent">Flat rates. Half up front, half when you're happy. No surprise invoices and no long contracts.</p>
+      <p class="sec-lede swap" data-for="trade">Flat rates. Half up front, half when you're happy. No surprise invoices, the same way you'd want to be treated on a bid.</p>
+    </div>
+
+    <div class="prices swap" data-for="agent">
+      <article class="price" data-glow>
+        <div class="price-name">Agent Site</div>
+        <div class="price-amt">$1,500</div>
+        <div class="price-per">One time, flat</div>
+        <ul>
+          <li>Custom site in your brand, not the brokerage template</li>
+          <li>Featured listings you can update yourself</li>
+          <li>SEO pages for the cities you work</li>
+          <li>Google Business and reviews wiring</li>
+          <li>Two revision rounds included</li>
+        </ul>
+        <a class="btn btn-line" href="sms:+13854823995" data-sms="Hey Cash, I'm interested in the Agent Site. Name and brokerage: ">Text me to start</a>
+      </article>
+      <article class="price top" data-glow>
+        <span class="tagline">Most popular</span>
+        <div class="price-name">Agent Site + IDX</div>
+        <div class="price-amt">$2,000</div>
+        <div class="price-per">One time, flat</div>
+        <ul>
+          <li>Everything in Agent Site</li>
+          <li>Live MLS search right on your site</li>
+          <li>Buyers search and save homes with you, not Zillow</li>
+          <li>Showing and info requests sent straight to you</li>
+          <li>IDX setup done for you</li>
+        </ul>
+        <a class="btn btn-hi" href="sms:+13854823995" data-sms="Hey Cash, I'm interested in the Agent Site + IDX. Name and brokerage: ">Text me to start</a>
+      </article>
+      <article class="price" data-glow>
+        <div class="price-name">Keep It Running</div>
+        <div class="price-amt">$70</div>
+        <div class="price-per">Per month, my fee. Cancel anytime.</div>
+        <ul>
+          <li>Hosting, security, and backups</li>
+          <li>Small edits included: listings, photos, bio</li>
+          <li>Lead and showing alerts covered</li>
+          <li>Monthly check that Google still likes you</li>
+          <li>Me, on call, when something's weird</li>
+        </ul>
+        <p class="addon"><strong>Got IDX?</strong> IDX Broker bills you separately for the MLS feed. That's their fee, not mine. On the Agent Site without IDX, $70 is all you pay.</p>
+        <a class="btn btn-line" href="sms:+13854823995" data-sms="Hey Cash, question about monthly hosting. Name and brokerage: ">Ask about it</a>
+      </article>
+    </div>
+
+    <div class="prices swap" data-for="trade">
+      <article class="price">
+        <div class="price-name">The Site</div>
+        <div class="price-amt">$1,500</div>
+        <div class="price-per">One time, flat</div>
+        <ul>
+          <li>Full custom site built for your trade</li>
+          <li>Mobile-first with tap-to-call</li>
+          <li>Photo gallery, reviews, service area</li>
+          <li>Google Business profile wiring</li>
+          <li>Two revision rounds included</li>
+        </ul>
+        <a class="btn btn-line" href="sms:+13854823995" data-sms="Hey Cash, I'm interested in The Site. Company name: ">Text me to start</a>
+      </article>
+      <article class="price top">
+        <span class="tagline">Most popular</span>
+        <div class="price-name">Site + Smart Leads</div>
+        <div class="price-amt">$2,500</div>
+        <div class="price-per">One time, flat</div>
+        <ul>
+          <li>Everything in The Site</li>
+          <li>AI quote assistant that pre-qualifies every lead</li>
+          <li>Leads sent straight to your phone and email</li>
+          <li>Emergency lane for urgent jobs</li>
+        </ul>
+        <a class="btn btn-hi" href="sms:+13854823995" data-sms="Hey Cash, I'm interested in Site + Smart Leads. Company name: ">Text me to start</a>
+      </article>
+      <article class="price">
+        <div class="price-name">Keep It Running</div>
+        <div class="price-amt">$149</div>
+        <div class="price-per">Per month, cancel anytime</div>
+        <ul>
+          <li>Hosting, security, and backups</li>
+          <li>Small edits included: photos, pricing, crew</li>
+          <li>AI features and lead alerts covered</li>
+          <li>Monthly check that Google still likes you</li>
+          <li>Me, on call, when something's weird</li>
+        </ul>
+        <a class="btn btn-line" href="sms:+13854823995" data-sms="Hey Cash, question about monthly hosting. Company name: ">Ask about it</a>
+      </article>
+    </div>
+
+    <p class="price-foot swap" data-for="agent"><strong>About IDX:</strong> it needs your broker's approval and an IDX Broker subscription. IDX Broker bills you for that directly, on top of my $70. I handle all the setup.</p>
+    <p class="price-foot swap" data-for="trade"><strong>Already have a site that just needs fixing?</strong> Call me anyway. Sometimes the answer is a $300 repair, not a rebuild, and I'll tell you which.</p>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <div class="sec-head"><h2>Four steps. Three weeks, tops.</h2></div>
+    <ol class="steps">
+      <li class="step"><span class="day">Day 1</span><h3>Free mockup</h3>
+        <p class="swap" data-for="agent">Text me your name and brokerage. I'll send a mockup of your new homepage. Free, no strings. If you hate it, we part friends.</p>
+        <p class="swap" data-for="trade">Text me your company name. I'll send a mockup of your new homepage. Free, no strings. If you hate it, we part friends.</p></li>
+      <li class="step"><span class="day">Day 2</span><h3>Ten questions</h3><p>Send photos and answer ten quick questions by text. That's your entire homework assignment.</p></li>
+      <li class="step"><span class="day">Weeks 1 to 3</span><h3>I build it</h3><p>I build, you review, we tweak. You get a launch date before I start. Half up front, half when you sign off.</p></li>
+      <li class="step"><span class="day">Launch day</span><h3>Phone rings</h3><p>Live on your domain, wired to Google, with every lead landing in your texts. You get back to work.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head"><h2>Straight answers</h2></div>
+    <div class="faq">
+      <details name="faq" class="swap" data-for="agent">
+        <summary>What is IDX, and do I need it?</summary>
+        <div class="ans">IDX is the feed that puts live MLS listings on your site, so buyers search homes with you instead of on Zillow. It needs your broker's approval and an IDX Broker subscription, which they bill you for directly. If you just want a sharp site with your own featured listings, the Agent Site covers that.</div>
+      </details>
+      <details name="faq" class="swap" data-for="trade">
+        <summary>How does the AI quote assistant work?</summary>
+        <div class="ans">It's a short chat on your site that asks what your estimator would: the address, the job, the timeline, whether insurance is involved. The lead gets sent to you with the answers already filled in. Try it at the bottom of any of the demo sites.</div>
+      </details>
+      <details name="faq">
+        <summary>Do I own the site?</summary>
+        <div class="ans">Yes. Your domain, your site. If we ever part ways, I hand it over. No hostage situations.</div>
+      </details>
+      <details name="faq">
+        <summary>What do you need from me?</summary>
+        <div class="ans swap" data-for="agent">Your headshot and a few photos, your logo if you have one, the cities you work, and answers to ten quick questions by text. That's it.</div>
+        <div class="ans swap" data-for="trade">Photos of your work, your logo if you have one, your service area, and answers to ten quick questions by text. That's it.</div>
+      </details>
+      <details name="faq">
+        <summary>How does paying work?</summary>
+        <div class="ans">Half up front when we start, half when you sign off on the finished site. The monthly plan is month to month, and you can cancel anytime.</div>
+      </details>
+      <details name="faq">
+        <summary>I already have a website or a domain. Now what?</summary>
+        <div class="ans">You keep your domain and I point it at the new site. If your current site just needs fixing, I'll tell you that instead of selling you a rebuild.</div>
+      </details>
+      <details name="faq">
+        <summary>Can I make changes myself?</summary>
+        <div class="ans swap" data-for="agent">Your featured listings, yes, in a couple of taps. For anything else, text me. Small edits are included with Keep It Running.</div>
+        <div class="ans swap" data-for="trade">Text me and it's done. Small edits like photos, prices, and crew changes are included with Keep It Running.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap split">
+    <div class="sec-head"><h2>One guy. Not an agency. On purpose.</h2></div>
+    <div class="about-copy">
+      <p>I'm Cash Muir. I build software and websites out of Clearfield, Utah. I run my own software company, so I build with the same tools agencies charge $10k to use, without the account managers and the invoices that read like a phone book.</p>
+      <p class="sub">By day I'm in a metal fab shop, so I know what a long day looks like, and I know you don't have time to babysit a web guy.</p>
+      <p class="sub">You want the phone to ring, a fair flat price, and the job done when I said it'd be done. That I can do.</p>
+      <div class="sig">Cash</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2 class="swap" data-for="agent">Let's put you in the spotlight</h2>
+      <h2 class="swap" data-for="trade">Let's get your phone ringing</h2>
+      <p class="sec-lede swap" data-for="agent">Call or text. Texting is fine, I know you're in showings half the day.</p>
+      <p class="sec-lede swap" data-for="trade">Call or text. Texting is fine, I know you're on a roof or in a cab half the day.</p>
+      <a class="big-phone" href="tel:+13854823995">(385) 482-3995</a>
+      <div class="contact-actions">
+        <a class="btn btn-hi swap" data-for="agent" href="sms:+13854823995" data-sms="Hey Cash, I'm a realtor and I'd like a free homepage mockup. Name and brokerage: ">Text me for a free mockup</a>
+        <a class="btn btn-hi swap" data-for="trade" href="sms:+13854823995" data-sms="Hey Cash, I'd like a free mockup. Company name: ">Text me for a free mockup</a>
+      </div>
+      <p class="email">Email works too: <a href="mailto:hello@muirwebco.com">hello@muirwebco.com</a></p>
+    </div>
+
+    <div class="form" data-glow>
+      <form id="leadForm" novalidate>
+        <h3>Or fill this out</h3>
+        <p class="hint">Takes 30 seconds. I'll text you back the same day.</p>
+        <div class="row-2">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-company">Company or brokerage <span class="opt">(optional)</span></label>
+          <input id="f-company" name="company" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="f-trade">What do you do?</label>
+          <select id="f-trade" name="trade">
+            <option>Real estate agent</option>
+            <option>Roofing</option><option>HVAC</option><option>Excavation</option><option>Concrete</option>
+            <option>Plumbing</option><option>Electrical</option><option>Landscaping</option><option>Other trade</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="f-msg" name="message" placeholder="Current website, where you work, what's not working..."></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="f-web">Leave this empty</label>
+          <input id="f-web" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn btn-hi" type="submit" id="sendBtn">Send it</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+      <div class="done" id="formDone" hidden>
+        <h3>Got it</h3>
+        <p>I'll text you back today. If it's urgent, call <a href="tel:+13854823995">(385) 482-3995</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="titleblock">
+      <div><span class="tb-k">Project</span><span class="tb-brand">Muir Web Co.</span></div>
+      <div><span class="tb-k">Drawn by</span><span class="tb-v">Cash Muir, Clearfield, Utah</span></div>
+      <div><span class="tb-k">Scale</span><span class="tb-v">Fits every phone</span></div>
+      <div><span class="tb-k">Owner</span><span class="tb-v">A service of Pantreo LLC, &copy; <span id="yr">2026</span></span></div>
+    </div>
+    <div class="foot-links">
+      <a href="/?for=realtors" data-go="agent">Websites for realtors</a>
+      <a href="/?for=contractors" data-go="trade">Websites for contractors</a>
+      <a href="tel:+13854823995">(385) 482-3995</a>
+      <a href="mailto:hello@muirwebco.com">hello@muirwebco.com</a>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-hi" href="tel:+13854823995">Call Cash</a>
+  <a class="btn btn-line" href="sms:+13854823995" data-sms="Hey Cash, I'd like a free mockup. Name and company: ">Text</a>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Settings ---------- */
+  var PHONE = '+13854823995';
+  var EMAIL = 'hello@muirwebco.com';
+  // Paste these from Supabase > Project Settings > API to save form leads to a "web_leads" table.
+  // Leave blank: on phones the form opens a pre-filled text to you; on computers, a pre-filled email.
+  var SUPABASE_URL = '';
+  var SUPABASE_ANON_KEY = '';
+
+  var TITLES = {
+    agent: 'Muir Web Co. | Websites for Utah Realtors',
+    trade: 'Muir Web Co. | Websites for Utah Contractors'
+  };
+
+  var body = document.body;
+  var root = document.documentElement;
+  var mode = body.dataset.mode;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var coarsePointer = matchMedia('(pointer: coarse)').matches;
+  var $ = function(s, c){ return (c || document).querySelector(s); };
+  var $$ = function(s, c){ return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+
+  /* ---------- Text links (iOS + Android) ---------- */
+  function smsHref(text){ return 'sms:' + PHONE + '?&body=' + encodeURIComponent(text); }
+  $$('[data-sms]').forEach(function(a){ a.href = smsHref(a.dataset.sms); });
+
+  /* ---------- Side switching ---------- */
+  var themeMeta = $('meta[name="theme-color"]');
+  var spot = $('#spot');
+  var tradeSelect = $('#f-trade');
+  var tradeTouched = false;
+  tradeSelect.addEventListener('change', function(){ tradeTouched = true; });
+
+  function themeColor(m){
+    if(m === 'agent') return '#08090B';
+    return matchMedia('(prefers-color-scheme: dark)').matches ? '#0F2D4F' : '#EEF2F3';
+  }
+  function lightsOn(){
+    if(reduce) return;
+    spot.classList.remove('on'); void spot.offsetWidth; spot.classList.add('on');
+  }
+
+  function applyMode(m, opts){
+    opts = opts || {};
+    mode = m;
+    body.dataset.mode = m;
+    $$('[data-set-mode]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.setMode === m)); });
+    document.title = TITLES[m];
+    themeMeta.setAttribute('content', themeColor(m));
+    if(!tradeTouched) tradeSelect.value = (m === 'agent') ? 'Real estate agent' : 'Roofing';
+    if(m === 'agent') lightsOn();
+    renderCalc(true);
+    startFeed();
+
+    if(opts.user){
+      body.classList.remove('fresh');
+      $('#heroMode').classList.remove('nudge');
+      try{ localStorage.setItem('mwc-mode', m); }catch(e){}
+      // Keep the address bar shareable on the real domain
+      try{
+        if(/(^|\.)muirwebco\.(com|vercel\.app)$/.test(location.hostname)){
+          history.replaceState(null, '', (m === 'agent' ? '/' : '/?for=contractors') + location.hash);
+        }
+      }catch(e){}
+      if(!opts.viaTransition){
+        $$('[data-for="' + m + '"]').forEach(function(el){
+          el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap');
+        });
+      }
+    }
+  }
+
+  // Circular reveal from wherever the switch was tapped (View Transitions API), with a plain fallback
+  function switchTo(m, x, y){
+    if(m === mode) return;
+    if(!document.startViewTransition || reduce){ applyMode(m, {user:true}); return; }
+    var r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    var t = document.startViewTransition(function(){ applyMode(m, {user:true, viaTransition:true}); });
+    t.ready.then(function(){
+      root.animate(
+        { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + r + 'px at ' + x + 'px ' + y + 'px)'] },
+        { duration: 750, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
+      );
+    }).catch(function(){});
+  }
+  function pointFrom(e, el){
+    if(e && e.clientX && e.detail > 0) return [e.clientX, e.clientY];
+    var b = el.getBoundingClientRect();
+    return [b.left + b.width / 2, b.top + b.height / 2];
+  }
+  $$('[data-set-mode]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      var p = pointFrom(e, b);
+      switchTo(b.dataset.setMode, p[0], p[1]);
+    });
+  });
+  $$('[data-go]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var m = a.dataset.go;
+      window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+      var hb = $('#heroMode [data-set-mode="' + m + '"]');
+      var p = pointFrom(null, hb);
+      setTimeout(function(){ switchTo(m, p[0], Math.max(p[1], 80)); }, reduce ? 0 : 450);
+    });
+  });
+  if(body.classList.contains('fresh')) $('#heroMode').classList.add('nudge');
+
+  // On phones, the header switch tucks away while the big hero switch is on screen
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      body.classList.toggle('hero-switch-in', entries[0].isIntersecting);
+    }, {rootMargin:'-68px 0px 0px 0px'}).observe($('#heroMode'));
+  }
+
+  /* ---------- Lock screen clock ---------- */
+  function tick(){
+    var d = new Date();
+    $('#lockTime').textContent = d.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'}).replace(/\s?[AP]M/i, '');
+    $('#lockDate').textContent = d.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+  }
+  tick(); setInterval(tick, 20000);
+  $('#yr').textContent = new Date().getFullYear();
+
+  /* ---------- Lead notifications on the phone ---------- */
+  var LEADS = {
+    agent: [
+      {t:'Buyer, Farmington', b:'Pre-approved at $540k. Wants to tour Saturday.'},
+      {t:'Home value request, Kaysville', b:'Thinking about listing in the spring.'},
+      {t:'Showing request, Bountiful', b:'4 bed, 3 bath on Orchard Dr. Free after 5pm.'},
+      {t:'Buyer, Santaquin', b:'First-time buyer, asking about down payment help.'},
+      {t:'Saved search, Layton', b:'Under $450k, 3+ beds. Saved 4 homes tonight.'}
+    ],
+    trade: [
+      {t:'Roof replacement, Kaysville', b:'Hail damage, insurance claim open. Wants an estimate this week.'},
+      {t:'AC not cooling, Layton', b:'Emergency lane. 12-year-old unit. Call ASAP.'},
+      {t:'Basement dig, Farmington', b:'New build, good site access. Needs a bid by Friday.'},
+      {t:'Driveway pour, Syracuse', b:'About 900 sq ft with tear-out. Flexible on timing.'},
+      {t:'Furnace tune-up, Clearfield', b:'Before winter. Prefers Saturday morning.'}
+    ]
+  };
+  var feed = $('#feed');
+  var feedTimer = null, idx = 0;
+
+  function noteEl(l, animate){
+    var el = document.createElement('div');
+    el.className = 'note' + (animate ? ' new' : '');
+    el.innerHTML =
+      '<div class="note-icon">MW</div><div class="note-body">' +
+      '<div class="note-top"><span>Muir Leads</span><span class="ago">now</span></div>' +
+      '<div class="note-title"></div><div class="note-text"></div></div>';
+    el.querySelector('.note-title').textContent = 'New lead: ' + l.t;
+    el.querySelector('.note-text').textContent = l.b;
+    return el;
+  }
+  function push(animate){
+    var list = LEADS[mode];
+    feed.prepend(noteEl(list[idx % list.length], animate));
+    idx++;
+    while(feed.children.length > 3) feed.lastChild.remove();
+    Array.prototype.forEach.call(feed.children, function(c, i){
+      c.querySelector('.ago').textContent = i === 0 ? 'now' : (i * 4) + 'm ago';
+    });
+  }
+  function startFeed(){
+    clearInterval(feedTimer);
+    feed.textContent = ''; idx = 0;
+    push(false); push(false); push(!reduce);
+    if(!reduce) feedTimer = setInterval(function(){ push(true); }, 3200);
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) clearInterval(feedTimer); else startFeed();
+  });
+
+  /* ---------- Phone tilt (mouse/trackpad only) ---------- */
+  if(finePointer && !reduce){
+    var phone = $('#phone'), hero = $('.hero'), raf = 0, px = 0, py = 0;
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect();
+      px = (e.clientX - r.left) / r.width - .5;
+      py = (e.clientY - r.top) / r.height - .5;
+      if(!raf) raf = requestAnimationFrame(function(){
+        raf = 0;
+        phone.style.setProperty('--ry', (px * 16).toFixed(2) + 'deg');
+        phone.style.setProperty('--rx', (-py * 10).toFixed(2) + 'deg');
+      });
+    });
+    hero.addEventListener('pointerleave', function(){
+      phone.style.setProperty('--ry', '0deg');
+      phone.style.setProperty('--rx', '0deg');
+    });
+  }
+
+  /* ---------- Cursor glow on glass cards ---------- */
+  if(finePointer){
+    document.addEventListener('pointermove', function(e){
+      var c = e.target.closest && e.target.closest('[data-glow]');
+      if(!c) return;
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, {passive:true});
+  }
+
+  /* ---------- ROI calculator ---------- */
+  var CALC = {
+    agent: {
+      l1:'Average commission', min1:2000, max1:30000, step1:500, v1:10000,
+      l2:'Extra closings a year from your site', min2:1, max2:12, v2:2,
+      one:'closing', many:'closings',
+      cost:2000 + 70 * 12,
+      what:'for Agent Site + IDX and a year of Keep It Running, before your IDX Broker fee'
+    },
+    trade: {
+      l1:'Average job', min1:500, max1:30000, step1:500, v1:8000,
+      l2:'Extra jobs a year from your site', min2:1, max2:24, v2:3,
+      one:'job', many:'jobs',
+      cost:2500 + 149 * 12,
+      what:'for Site + Smart Leads and a year of Keep It Running'
+    }
+  };
+  var cVal = $('#calcVal'), cNum = $('#calcNum'), cBig = $('#calcBig');
+  var shown = 0, tween = 0;
+
+  function fill(input){
+    var p = (input.value - input.min) / (input.max - input.min) * 100;
+    input.style.setProperty('--p', p + '%');
+  }
+  function animateTo(v){
+    cancelAnimationFrame(tween);
+    if(reduce){ shown = v; cBig.textContent = money(v); return; }
+    var from = shown, t0 = performance.now(), d = 500;
+    (function step(t){
+      var k = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - k, 3);
+      shown = from + (v - from) * e;
+      cBig.textContent = money(shown);
+      if(k < 1) tween = requestAnimationFrame(step);
+    })(t0);
+  }
+  function renderCalc(reset){
+    var c = CALC[mode];
+    if(reset){
+      $('#calcValLabel').textContent = c.l1;
+      $('#calcNumLabel').textContent = c.l2;
+      cVal.min = c.min1; cVal.max = c.max1; cVal.step = c.step1; cVal.value = c.v1;
+      cNum.min = c.min2; cNum.max = c.max2; cNum.value = c.v2;
+    }
+    var v = +cVal.value, n = +cNum.value;
+    c.v1 = v; c.v2 = n;
+    fill(cVal); fill(cNum);
+    $('#calcValOut').textContent = money(v);
+    $('#calcNumOut').textContent = n;
+    animateTo(v * n);
+    var need = Math.ceil(c.cost / v);
+    $('#calcLine').innerHTML = need <= 1
+      ? 'One ' + c.one + ' pays for the <b>whole first year</b>.'
+      : 'Your site pays for itself after <b>' + need + ' ' + c.many + '</b>.';
+    $('#calcFine').textContent = 'First-year cost: ' + money(c.cost) + ' ' + c.what + '. Your numbers, your call. This is just multiplication.';
+  }
+  cVal.addEventListener('input', function(){ renderCalc(false); });
+  cNum.addEventListener('input', function(){ renderCalc(false); });
+
+  /* ---------- Contact form ---------- */
+  var form = $('#leadForm'), statusEl = $('#formStatus'), sendBtn = $('#sendBtn');
+  function setStatus(msg, err){ statusEl.textContent = msg; statusEl.className = 'form-status' + (err ? ' err' : ''); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(form.website.value) return; // bot trap
+    var d = {
+      name: form.name.value.trim(),
+      phone: form.phone.value.trim(),
+      company: form.company.value.trim(),
+      trade: form.trade.value,
+      message: form.message.value.trim(),
+      audience: mode
+    };
+    if(!d.name){ setStatus('Add your name so I know who I\'m texting.', true); form.name.focus(); return; }
+    if(d.phone.replace(/\D/g, '').length < 10){ setStatus('Add a 10-digit phone number so I can text you back.', true); form.phone.focus(); return; }
+
+    sendBtn.disabled = true; sendBtn.textContent = 'Sending...'; setStatus('');
+
+    function fallback(){
+      var msg = 'Hey Cash, it\'s ' + d.name + (d.company ? ' from ' + d.company : '') + ' (' + d.trade + '). ' +
+        (d.message || 'I\'d like a free mockup.') + ' My number: ' + d.phone;
+      sendBtn.disabled = false; sendBtn.textContent = 'Send it';
+      if(coarsePointer){
+        setStatus('Opening your texts. Hit send and it comes straight to me.');
+        window.location.href = smsHref(msg);
+      }else{
+        setStatus('Opening your email. Hit send and it comes straight to me, or call (385) 482-3995.');
+        window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Website: ' + d.name) + '&body=' + encodeURIComponent(msg);
+      }
+    }
+    if(!SUPABASE_URL || !SUPABASE_ANON_KEY){ fallback(); return; }
+
+    fetch(SUPABASE_URL + '/rest/v1/web_leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(d)
+    }).then(function(r){
+      if(!r.ok) throw new Error('Save failed');
+      form.hidden = true;
+      $('#formDone').hidden = false;
+    }).catch(fallback);
+  });
+
+  /* ---------- Go ---------- */
+  applyMode(mode);
+})();
+</script>
+</body>
+</html>
