@@ -33,7 +33,7 @@ Use one server at a time on port 3000.
 
 `app.js` contains the sample property records, project descriptions, audience copy, pricing, and calculator settings. `styles.css` contains both visual themes and responsive layouts.
 
-`index.html` includes `ProfessionalService` structured data in the `businessData` JSON-LD script, identifying Muir Web Co., Cash Muir, the phone number, Clearfield address locality, and Utah service area. The optional `email` field supplies both the visible email link and the request email destination. Until a replacement address is confirmed, the obsolete address is removed and email links stay hidden; call/text remain available.
+`index.html` includes `ProfessionalService` structured data in the `businessData` JSON-LD script, identifying Muir Web Co., Cash Muir, the phone number, Clearfield address locality, and Utah service area. The optional `email` field supplies both the visible email link and the request email destination. The confirmed address is cash@muirwebco.com. Changing the email field updates both email destinations; call/text remain available independently.
 
 All five showcase images in `assets/` are AI-generated architectural concepts created for this demo, served locally as optimized WebP files. Properties, locations, prices, and project details are illustrative; these are not active listings or completed client projects. Replace them with approved photos and verified details to feature actual work. Gallery alternatives are labeled design inspiration, not additional verified photos of the same property.
 
