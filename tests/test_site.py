@@ -181,13 +181,85 @@ class WebsiteTests(unittest.TestCase):
         self.page.locator('#leadForm button[type=submit]').click()
         self.assertTrue(self.page.locator('#requestHandoff').is_visible())
         self.assertIn('not been sent',self.page.locator('#formStatus').inner_text())
-        email=urlsplit(self.page.locator('#requestEmail').get_attribute('href'))
-        values=parse_qs(email.query)
-        self.assertIn('Taylor & Co',values['subject'][0])
-        self.assertIn('A gallery & project requests? Yes!',values['body'][0])
-        self.assertTrue(self.page.locator('#requestSms').get_attribute('href').startswith('sms:+13854823995'))
+        business=json.loads(self.page.locator('#businessData').text_content())
+        if business.get('email'):
+            email=urlsplit(self.page.locator('#requestEmail').get_attribute('href'))
+            self.assertEqual(email.path,business['email'])
+            values=parse_qs(email.query)
+            self.assertIn('Taylor & Co',values['subject'][0])
+            self.assertIn('A gallery & project requests? Yes!',values['body'][0])
+        else:
+            self.assertFalse(self.page.locator('#requestEmail').is_visible())
+        self.assertEqual(self.page.locator('#requestSms').get_attribute('href'),'sms:+13854823995')
+        self.context.grant_permissions(['clipboard-read','clipboard-write'])
+        self.page.locator('#copyRequest').click()
+        copied=self.page.evaluate('navigator.clipboard.readText()')
+        self.assertIn('Taylor & Co',copied)
+        self.assertIn('A gallery & project requests? Yes!',copied)
+        self.assertIn('Nothing has been sent',self.page.locator('#formStatus').inner_text())
         self.page.locator('#f-msg').fill('Changed request')
         self.assertFalse(self.page.locator('#requestHandoff').is_visible())
+
+    def test_specific_offer_and_client_proof_survive_audience_switching(self):
+        headline=self.page.locator('#hero-title')
+        self.assertIn('Websites for',headline.inner_text())
+        self.assertIn('Utah realtors',headline.inner_text())
+        proof=self.page.locator('.hero-proof')
+        for text in ['Kyla Muir','Best of Utah Valley','2025','2026']:
+            self.assertIn(text,proof.inner_text())
+        self.assertEqual(proof.locator('a').get_attribute('href'),'https://kylamuirrealty.com')
+        self.assertLess(proof.bounding_box()['y']+proof.bounding_box()['height'],1000)
+        case=self.page.locator('.case-info').inner_text()
+        for text in ['#1','Seven city pages','Santaquin','Payson','Salem','Spanish Fork','Springville','Mapleton','Orem','home-value funnel','home value report']:
+            self.assertIn(text,case)
+        self.page.locator('.audience-picker [data-set-mode=trade]').click()
+        self.assertIn('Websites for',headline.inner_text())
+        self.assertIn('Utah contractors',headline.inner_text())
+        self.page.locator('.audience-picker [data-set-mode=agent]').click()
+        self.assertIn('Kyla Muir',proof.inner_text())
+
+    def test_mobile_call_and_text_controls_remain_visible_when_scrolling(self):
+        for width in [320,390,650]:
+            self.page.set_viewport_size({'width':width,'height':844})
+            self.page.evaluate('scrollTo(0,0)')
+            self.assertTrue(self.page.locator('.header-call').is_visible())
+            self.assertEqual(self.page.locator('.header-call').get_attribute('href'),'tel:+13854823995')
+            bar=self.page.locator('.mobile-contact')
+            self.assertTrue(bar.is_visible())
+            self.assertEqual(bar.evaluate('el=>getComputedStyle(el).position'),'fixed')
+            self.assertEqual(bar.locator('[href^="tel:"]').get_attribute('href'),'tel:+13854823995')
+            self.assertEqual(bar.locator('[href^="sms:"]').get_attribute('href'),'sms:+13854823995')
+            self.page.evaluate('scrollTo(0,document.documentElement.scrollHeight)')
+            box=bar.bounding_box()
+            self.assertLessEqual(box['y']+box['height'],845)
+            self.assertLessEqual(self.page.locator('.site-footer').bounding_box()['y']+self.page.locator('.site-footer').bounding_box()['height'],box['y'])
+
+    def test_text_links_never_include_a_canned_message(self):
+        for mode in ['agent','trade']:
+            self.page.locator(f'.audience-picker [data-set-mode={mode}]').click()
+            links=self.page.locator('a[href^="sms:"]').evaluate_all('links=>links.map(a=>a.getAttribute("href"))')
+            self.assertGreaterEqual(len(links),5)
+            self.assertTrue(all(link=='sms:+13854823995' for link in links),links)
+        self.assertEqual(self.page.locator('[data-sms]').count(),0)
+
+    def test_local_business_schema_matches_visible_contacts(self):
+        business=json.loads(self.page.locator('script[type="application/ld+json"]').text_content())
+        self.assertEqual(business['@context'],'https://schema.org')
+        self.assertEqual(business['@type'],'ProfessionalService')
+        self.assertEqual(business['name'],'Muir Web Co.')
+        self.assertEqual(business['founder']['name'],'Cash Muir')
+        self.assertEqual(business['areaServed']['name'],'Utah')
+        self.assertEqual(business['address']['addressLocality'],'Clearfield')
+        self.assertEqual(business['address']['addressRegion'],'UT')
+        phone=''.join(c for c in business['telephone'] if c.isdigit() or c=='+')
+        calls=self.page.locator('a[href^="tel:"]').evaluate_all('links=>links.map(a=>a.getAttribute("href"))')
+        self.assertTrue(all(link=='tel:'+phone for link in calls))
+        self.assertNotIn('hello@muirwebco.com',self.page.content())
+        if business.get('email'):
+            contact=self.page.locator('[data-business-email]')
+            self.assertTrue(contact.is_visible())
+            self.assertEqual(contact.inner_text(),business['email'])
+            self.assertEqual(contact.get_attribute('href'),'mailto:'+business['email'])
 
     def test_responsive_layout_and_reduced_motion(self):
         for width in [320,390,768,1024,1440]:
@@ -195,6 +267,7 @@ class WebsiteTests(unittest.TestCase):
             for mode in ['agent','trade']:
                 self.page.locator(f'.audience-picker [data-set-mode={mode}]').click()
                 self.assertFalse(self.page.evaluate('document.documentElement.scrollWidth > innerWidth'),f'Overflow at {width} in {mode}')
+                self.assertFalse(self.page.locator('#hero-title').evaluate('el=>el.scrollWidth>el.clientWidth'),f'Clipped headline at {width} in {mode}')
         self.assertEqual(self.page.locator('#sceneCard').evaluate('el=>getComputedStyle(el).transform'),'none')
         self.page.locator('.audience-picker [data-set-mode=agent]').click()
         self.page.set_viewport_size({'width':390,'height':844})
