@@ -26,11 +26,14 @@ Use one server at a time on port 3000.
 - Tradesman before-and-after comparisons for exterior renovation and outdoor living; supports pointer, touch, and keyboard input.
 - Audience-specific copy, pricing, calculator, and persistent selection. Share `/?for=realtors` or `/?for=contractors`.
 - Progressive View Transitions, pointer-responsive perspective, scroll reveals, and reduced-motion alternatives. No motion or animation library is required.
-- Text/call contact links and a validated project-request composer. The composer prepares an SMS or email; the visitor must send it in their app. There is no submission backend or delivery confirmation.
+- A mobile header call button and persistent Call/Text bar, with space reserved below the footer so the controls do not cover content.
+- All text links open blank conversations. The validated project-request composer offers a copy button for the visitor's details; visitors paste and send the request themselves. Email handoff is available when a confirmed business email is configured. There is no submission backend or delivery confirmation.
 
 ## Content
 
 `app.js` contains the sample property records, project descriptions, audience copy, pricing, and calculator settings. `styles.css` contains both visual themes and responsive layouts.
+
+`index.html` includes `ProfessionalService` structured data in the `businessData` JSON-LD script, identifying Muir Web Co., Cash Muir, the phone number, Clearfield address locality, and Utah service area. The optional `email` field supplies both the visible email link and the request email destination. The confirmed address is cash@muirwebco.com. Changing the email field updates both email destinations; call/text remain available independently.
 
 All five showcase images in `assets/` are AI-generated architectural concepts created for this demo, served locally as optimized WebP files. Properties, locations, prices, and project details are illustrative; these are not active listings or completed client projects. Replace them with approved photos and verified details to feature actual work. Gallery alternatives are labeled design inspiration, not additional verified photos of the same property.
 
@@ -46,7 +49,7 @@ The cloud environment provides Python Playwright and Chromium at `/usr/bin/chrom
 python3 -m unittest discover -s tests -v
 ```
 
-Tests start an isolated local HTTP server automatically and check routing, filters and empty states, saved collection persistence, dialogs and focus, galleries, project controls, pricing/calculator behavior, form validation and handoff, reduced motion, and layout widths from 320 to 1440 pixels. Tests do not send messages or submit leads.
+Tests start an isolated local HTTP server automatically and check routing, filters and empty states, saved collection persistence, dialogs and focus, galleries, project controls, pricing/calculator behavior, form validation and copy/handoff, reduced motion, and layout widths from 320 to 1440 pixels. They also check clear audience offers, Kyla's award and case-study specifics, persistent mobile contacts, blank SMS links, and consistent local business data. Tests do not send messages or submit leads.
 
 For another machine, install Python Playwright and adjust the browser executable in `tests/test_site.py` to your installed Chromium if needed.
 

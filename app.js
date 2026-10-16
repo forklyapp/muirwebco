@@ -5,9 +5,10 @@
   const icon = name => `<svg class="icon" aria-hidden="true"><use href="#${name}"/></svg>`;
   const money = n => '$' + Math.round(n).toLocaleString('en-US');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const PHONE = '+13854823995';
-  const EMAIL = 'hello@muirwebco.com';
-  const sms = message => `sms:${PHONE}?&body=${encodeURIComponent(message)}`;
+  const BUSINESS = JSON.parse($('#businessData').textContent);
+  const PHONE = BUSINESS.telephone.replace(/[\s-]/g, '');
+  const EMAIL = BUSINESS.email || '';
+  const SMS_URL = `sms:${PHONE}`;
   const read = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
   const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} };
   let mode = document.documentElement.dataset.mode === 'trade' ? 'trade' : 'agent';
@@ -145,12 +146,18 @@
 
   const copy = {
     agent: {
-      hero: "You make a living helping people find their place.<br>Let's make your website a place they remember.",
+      heroEyebrow: 'WEB DESIGN &amp; DEVELOPMENT · CLEARFIELD, UTAH',
+      headline: 'Websites for<br><span>Utah realtors.</span>',
+      hero: 'Your brand. Your listings. Your leads.<br>Custom websites from $1,500, with most sites live in 1 to 3 weeks.',
+      heroProof: 'Built for <a href="https://kylamuirrealty.com" target="_blank" rel="noopener">Kyla Muir Realty</a>. Kyla was voted #1 in Best of Utah Valley in 2025 and 2026.',
       sceneLabel: 'A DIFFERENT KIND OF PROPERTY EXPERIENCE', sceneTitle: 'A place to<br>call extraordinary.', sceneMeta: 'THE PROPERTY COLLECTION', sceneFooter: 'Thoughtfully built. Beautifully lived.',
       experienceIntro: 'A property search that feels like discovery.<br>Go ahead. Find your kind of extraordinary.', pricingFor: 'FOR THE AGENTS BUILDING THEIR OWN NAME.'
     },
     trade: {
-      hero: "You build things that last. Your website should show it.<br>Let's give your craftsmanship the presence it deserves.",
+      heroEyebrow: 'WEB DESIGN &amp; DEVELOPMENT · CLEARFIELD, UTAH',
+      headline: 'Websites for<br><span>Utah contractors.</span>',
+      hero: 'Websites for roofers, HVAC crews, excavators, and more.<br>Show your work and make it easy for customers to call. From $1,500.',
+      heroProof: 'Flat pricing. Tap-to-call. Your projects front and center. Most sites live in 1 to 3 weeks.',
       sceneLabel: 'CRAFTSMANSHIP YOU CAN FEEL', sceneTitle: 'Built with pride.<br>Shown with purpose.', sceneMeta: 'THE TRANSFORMATION COLLECTION', sceneFooter: 'From what was. To what could be.',
       experienceIntro: 'Your work makes a visible difference.<br>Let your next customer see it for themselves.', pricingFor: 'FOR THE PEOPLE WHO BUILD THE REAL WORLD.'
     }
@@ -204,7 +211,7 @@
     $('#sceneNumber').textContent = mode === 'agent' ? 'MW—01' : 'MW—02';
     $('#stageCount').textContent = mode === 'agent' ? '01 / 02' : '02 / 02';
     $('#pricingSwitch').textContent = mode === 'agent' ? 'See tradesman pricing ↗' : 'See realtor pricing ↗';
-    $('#pricingGrid').innerHTML = pricing[mode].map(p => `<article class="price-card${p.featured ? ' featured' : ''}">${p.featured ? '<span class="price-featured-label">THE MOST POPULAR CHOICE</span>' : ''}<span class="price-type">${p.label}</span><h3>${p.name}</h3><strong class="price-amount">${money(p.amount)}</strong><p class="price-period">${p.period}</p><ul>${p.items.map(item => `<li>${icon('check')}${item}</li>`).join('')}</ul><a class="button ${p.featured ? 'button-accent' : 'button-outline'}" href="${sms(`Hey Cash, I'm interested in ${p.name} for my ${mode === 'agent' ? 'real estate' : 'trade'} business. Can we talk?`)}">${p.action} ${icon('diagonal')}</a></article>`).join('');
+    $('#pricingGrid').innerHTML = pricing[mode].map(p => `<article class="price-card${p.featured ? ' featured' : ''}">${p.featured ? '<span class="price-featured-label">THE MOST POPULAR CHOICE</span>' : ''}<span class="price-type">${p.label}</span><h3>${p.name}</h3><strong class="price-amount">${money(p.amount)}</strong><p class="price-period">${p.period}</p><ul>${p.items.map(item => `<li>${icon('check')}${item}</li>`).join('')}</ul><a class="button ${p.featured ? 'button-accent' : 'button-outline'}" href="${SMS_URL}">${p.action} ${icon('diagonal')}</a></article>`).join('');
     $('#pricingFootnote').textContent = mode === 'agent' ? 'About IDX: live MLS access requires broker approval and a separate IDX Broker subscription, billed directly by the provider. The property explorer above is a concept demo and does not connect to an MLS.' : 'Smart Leads is a service package, not a live AI demo on this page. Scope, integrations, and any third-party costs are agreed before work begins. Already have a site that just needs fixing? Let’s talk about that, too.';
     $('#industryQuestion').textContent = mode === 'agent' ? 'What about live MLS listings?' : 'How does the quote assistant work?';
     $('#industryAnswer').textContent = mode === 'agent' ? "The property explorer above uses illustrative content. For live MLS search, the IDX package needs your broker's approval and an IDX Broker subscription, billed separately." : 'A guided assistant can ask about the job, location, timeline, and urgency so your first conversation starts with useful details. It helps qualify a request; a final price still comes from you. We agree the workflow before building it.';
@@ -253,7 +260,11 @@
   }
   $('#comparisonRange').addEventListener('input', updateComparison);
 
-  $$('[data-sms]').forEach(link => { link.href = sms(link.dataset.sms); });
+  $$('[data-business-email]').forEach(link => {
+    link.hidden = !EMAIL;
+    if (EMAIL) { link.href = `mailto:${EMAIL}`; link.textContent = EMAIL; }
+  });
+  $('#requestEmail').hidden = !EMAIL;
   const form = $('#leadForm');
   function invalidate(element, message) {
     $('#formStatus').textContent = message; $('#formStatus').className = 'form-status error';
@@ -272,13 +283,26 @@
     if (!name) return invalidate($('#f-name'), 'Add your name so I know who to get back to.');
     const digits = phone.replace(/\D/g, '');
     if (digits.length < 10 || digits.length > 15) return invalidate($('#f-phone'), 'Add a phone number with 10 to 15 digits so I can get back to you.');
-    const request = `Hi Cash, I'm ${name}${company ? ' from ' + company : ''}.\nBusiness: ${trade}\nPhone: ${phone}\n\n${message || "I'd like a free homepage mockup."}`;
-    $('#requestSms').href = sms(request);
-    $('#requestEmail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Website request: ${name}`)}&body=${encodeURIComponent(request)}`;
+    const request = `Name: ${name}${company ? '\nBusiness / brokerage: ' + company : ''}\nIndustry: ${trade}\nPhone: ${phone}${message ? '\n\n' + message : ''}`;
+    $('#preparedRequest').value = request;
+    $('#requestSms').href = SMS_URL;
+    $('#requestEmail').hidden = !EMAIL;
+    if (EMAIL) $('#requestEmail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Website request: ${name}`)}&body=${encodeURIComponent(request)}`;
     $('#formStatus').textContent = 'Prepared. Your request has not been sent yet.'; $('#formStatus').className = 'form-status';
     $('#requestHandoff').hidden = false;
-    $('#requestSms').focus({ preventScroll: true });
+    $('#copyRequest').focus({ preventScroll: true });
     $('#requestHandoff').scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'nearest' });
+  });
+
+  $('#copyRequest').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText($('#preparedRequest').value);
+      $('#formStatus').textContent = 'Copied. Open texts and paste your request. Nothing has been sent yet.';
+    } catch {
+      $('#preparedRequest').focus();
+      $('#preparedRequest').select();
+      $('#formStatus').textContent = 'Copy the selected request, then paste it into your message.';
+    }
   });
 
   const stage = $('#heroStage'), card = $('#sceneCard');
